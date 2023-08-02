@@ -1,6 +1,4 @@
-This is the sanity token
 
-skUmkrb5FLHCiXY8hTZU88egUbR1xtZoIjBlNCmoxLHmAqA0njQSLjIZxlqD51q7WzpG6CdrtWtD8T2Az9Rbq4Abg0UCGaIKNuLcXyQ0b2mVX6dUIQWPpgymvixaGpgYWueEbDe00bQVNGanUgHRQmPTAN2Yggq1TvB8mKCmHp4GrXImqeWv
 
 Code picked from the Female/page.tsx file
 
