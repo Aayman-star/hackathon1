@@ -1,0 +1,160 @@
+This is the sanity token
+
+skUmkrb5FLHCiXY8hTZU88egUbR1xtZoIjBlNCmoxLHmAqA0njQSLjIZxlqD51q7WzpG6CdrtWtD8T2Az9Rbq4Abg0UCGaIKNuLcXyQ0b2mVX6dUIQWPpgymvixaGpgYWueEbDe00bQVNGanUgHRQmPTAN2Yggq1TvB8mKCmHp4GrXImqeWv
+
+Code picked from the Female/page.tsx file
+
+import { client } from "@/lib1/sanityClient";
+
+export const getProductData = async () => {
+  const res = await client.fetch(`*[_type=='product']{
+    title
+  }`);
+  return res;
+};
+
+const page = async () => {
+  interface IProducts {
+    title: "string";
+    description: "string";
+  }
+  const data: IProducts[] = await getProductData();
+  const displayData = data.map((item) => <h1>{item.title}</h1>);
+  console.log(data);
+  return (
+    <div className="bg-white min-h-screen w-full grid place-content-center">
+      <div className="max-w-7xl min-h-screen p-4 bg-slate-200 flex space-x-10 items-center flex-wrap">
+        {displayData}
+      </div>
+    </div>
+  );
+};
+
+export default page;
+
+
+
+The followind code lines are from the Products Page where I hardcoded the display of Products from each Category. Now I have replaced that hardcode with a component by the name of DisplayProducts.
+
+   {/* <Image
+                  src={urlForImage(item.image).url()}
+                  alt="product"
+                  width={imgWidth}
+                  height={imgHeight}
+                />
+                <h1 className="font-medium" key={i}>
+                  {item.title}
+                </h1> */}
+
+  this code is from the Jewllery sectiion
+  where I am trying to have some text in the background
+
+  <div className="md:w-1/2 bg-zinc-50 relative">
+        <h1 className="p-4 text-9xl text-black opacity-100 font-semibold mix-blend-overlay">
+          Different From Others
+        </h1>
+        {/* <div className="p-8 grid grid-cols-[repeat(2,auto)] gap-x-4 gap-y-4">
+          <div className="flex flex-col justify-between">
+            <h2 className="text-lg font-bold text-zinc-900">
+              Using Good Quality Materials
+            </h2>
+            <p>Lorem ipsum dolor sit amt, consectetur adipiscing elit.</p>
+          </div>
+          <div className="flex flex-col justify-between">
+            <h2 className="text-lg font-bold text-zinc-900">
+              100% HandMade Products
+            </h2>
+            <p>Lorem ipsum dolor sit amt, consectetur adipiscing elit.</p>
+          </div>
+          <div className="flex flex-col justify-between">
+            <h2 className="text-lg font-bold text-zinc-800">
+              Modern Fashin Design
+            </h2>
+            <p>Lorem ipsum dolor sit amt, consectetur adipiscing elit.</p>
+          </div>
+          <div className="flex flex-col justify-between">
+            <h2 className="text-lg font-bold text-zinc-900">
+              Discount on Bulk Orders
+            </h2>
+            <p>Lorem ipsum dolor sit amt, consectetur adipiscing elit.</p>
+          </div>
+        </div> */}
+
+        Some code from cartdisplay.tsx file:
+
+         // <div className="bg-yellow-300 max-w-7xl mx-auto grid grid-cols-[repeat(3,auto)] gap-28 items-center">
+    //   <div className="col-span-2 flex items-center justify-start">
+    //     <Image
+    //       className="hover:scale-105 duration-300"
+    //       src={urlForImage(cartItem[0].image).url()}
+    //       alt="product"
+    //       width={150}
+    //       height={100}
+    //     />
+    //     <div>
+    //       {" "}
+    //       <h2 className="text-xl text-zinc-900 font-medium">
+    //         {cartItem[0].title}
+    //       </h2>
+    //     </div>
+    //   </div>
+
+    //   <div>
+    //     <h3 className="text-zinc-900 font-medium text-lg">
+    //       ${cartItem[0].price.toFixed()}
+    //     </h3>
+    //   </div>
+    // </div>
+
+
+
+
+
+
+
+
+    This is the CartState.tsx file before making the useReducer changes:
+
+
+    "use client";
+import CartContext from "./cartContext";
+import { useState, ReactNode } from "react";
+import { POST } from "../api/cart/route";
+
+interface cartStateProps {
+  children: ReactNode;
+}
+
+const CartState = ({ children }: cartStateProps) => {
+  const [Quantity, setQuantity] = useState(1);
+
+  const IncreaseQuantity = () => {
+    setQuantity(Quantity + 1);
+  };
+
+  const DecreaseQuantity = () => {
+    setQuantity(Quantity - 1);
+  };
+
+  const addToCart = async (_id: string) => {
+    const res = await fetch("/api/cart", {
+      method: "POST",
+      body: JSON.stringify({
+        product_id: _id,
+        quantity: Quantity,
+      }),
+    });
+    const result = await res.json();
+    console.log(`Here is the data: `);
+    console.log(result);
+  };
+
+  return (
+    <CartContext.Provider
+      value={{ Quantity, IncreaseQuantity, DecreaseQuantity, addToCart }}>
+      {children}
+    </CartContext.Provider>
+  );
+};
+
+export default CartState;
