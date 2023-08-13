@@ -1,20 +1,16 @@
 "use client";
-
-// import React, { useContext } from "react";
-
-// import CartContext from "../cartContext/cartContext";
 import { useSelector, useDispatch } from "react-redux";
 import cartSlice, { cartActions } from "../store/slice/cartSlice";
 import { RootState } from "../store/store";
 import { useState } from "react";
 
-interface QuantityProps {
-  itemQuantity: number;
-  Up: () => void;
-  Down: () => void;
+interface QProps {
+  Q1: number;
+  increaseQ1: () => void;
+  decreaseQ1: () => void;
 }
 
-const Quantity = ({ itemQuantity, Up, Down }: QuantityProps) => {
+const Quantity = ({ Q1, increaseQ1, decreaseQ1 }: QProps) => {
   // const itemQuantity = useSelector(
   //   (state: RootState) => state.cartSlice.item_quantity
   // );
@@ -28,6 +24,7 @@ const Quantity = ({ itemQuantity, Up, Down }: QuantityProps) => {
   // const DecreaseQuantity = () => {
   //   dispatch(cartActions.decrement());
   // };
+  console.log(`child:`, Q1);
 
   return (
     <>
@@ -35,15 +32,15 @@ const Quantity = ({ itemQuantity, Up, Down }: QuantityProps) => {
         <p>Quantity : </p>
         <div className="flex items-center gap-x-4">
           <button
-            onClick={Down}
+            onClick={decreaseQ1}
             className="bg-zinc-800 text-zinc-50 px-2 py-1 rounded-md shadow-md">
             -
           </button>
 
-          <p>{itemQuantity}</p>
+          <p>{Q1}</p>
 
           <button
-            onClick={Up}
+            onClick={increaseQ1}
             className="bg-zinc-800 text-zinc-50 px-2 py-1 rounded-md shadow-md">
             +
           </button>

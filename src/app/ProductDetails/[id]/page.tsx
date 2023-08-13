@@ -5,14 +5,11 @@ import Image from "next/image";
 import { Image as IImage } from "sanity";
 import { urlForImage } from "../../../../sanity/lib/image";
 import { pid } from "process";
-// import { useState, useContext } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import cartSlice, { cartActions } from "@/app/store/slice/cartSlice";
 import { RootState } from "@/app/store/store";
 import { useState } from "react";
-
 import Quantity from "../Quantity";
-// import CartContext from "@/app/cartContext/cartContext";
 
 interface ProductDetails {
   title: string;
@@ -24,22 +21,23 @@ interface ProductDetails {
 }
 
 const page = async ({ params }: { params: { id: string } }) => {
+  const [Q, setQ] = useState(1);
+  const increaseQ = () => {
+    setQ(Q + 1);
+  };
+  const decreaseQ = () => {
+    setQ(Q - 1);
+  };
+  console.log(`parent:`, Q);
   const pid = params.id;
-  const { product_id, item_quantity } = useSelector(
-    (state: RootState) => state.cartSlice
-  );
+  // const itemQuantity = useSelector(
+  //   (state: RootState) => state.cartSlice.item_quantity
+  // );
+
   const dispatch = useDispatch();
 
-  const itemUP = () => {
-    dispatch(cartActions.increment());
-  };
-
-  const itemDown = () => {
-    dispatch(cartActions.decrement());
-  };
-
   const addToCart = () => {
-    dispatch(cartActions.addToCart({ productId: pid, item_quantity }));
+    //dispatch(cartActions.addToCart({ pid: pid, itemQuantity: Q }));
   };
 
   const query = `*[_type == 'product' && _id == $pid]{title,price,image,category->{name}, producttype ->{ name }}`;
@@ -75,7 +73,6 @@ const page = async ({ params }: { params: { id: string } }) => {
             </div>
             <div className="ml-20 flex flex-col space-y-4">
               <h3 className="font-semibold text-lg">Select Size</h3>
-
               <div className="flex items-center">
                 {sizes.map((size, i) => (
                   <span
@@ -85,11 +82,28 @@ const page = async ({ params }: { params: { id: string } }) => {
                   </span>
                 ))}
               </div>
-              <Quantity
-                Up={itemUP}
-                Down={itemDown}
-                itemQuantity={item_quantity}
-              />
+              {/* <Quantity Q1={Q} increaseQ1={increaseQ} decreaseQ1={decreaseQ} /> */}
+              {/*Qunatity Component written here */}
+
+              <div className="flex items-center gap-x-10">
+                <p>Quantity : </p>
+                <div className="flex items-center gap-x-4">
+                  <button
+                    onClick={decreaseQ}
+                    className="bg-zinc-800 text-zinc-50 px-2 py-1 rounded-md shadow-md">
+                    -
+                  </button>
+
+                  <p>{Q}</p>
+
+                  <button
+                    onClick={increaseQ}
+                    className="bg-zinc-800 text-zinc-50 px-2 py-1 rounded-md shadow-md">
+                    +
+                  </button>
+                </div>
+              </div>
+              {/*Quantity Component ends here*/}
             </div>
 
             <p className="font-semibold text-xl ml-20">
@@ -97,7 +111,7 @@ const page = async ({ params }: { params: { id: string } }) => {
             </p>
             <div>
               <button
-                onClick={() => addToCart()}
+                onClick={addToCart}
                 className="px-8 py-4 ml-20 bg-zinc-900 text-zinc-50 text-sm rounded-sm hover:scale-105">
                 {" "}
                 Add to Cart

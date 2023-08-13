@@ -1,11 +1,12 @@
+"use client";
 import "./globals.css";
 // import { Inter } from "next/font/google";
 import { Sora } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Providers from "./components/Provider";
-// import CartContext from "./cartContext/cartContext";
-// import CartState from "./cartContext/CartState";
+import { store } from "@/app/store/store";
+import { Provider } from "react-redux";
 
 // const inter = Inter({ subsets: ["latin"] });
 const sora = Sora({ subsets: ["latin"] });
@@ -23,11 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={sora.className}>
-        <Providers>
+        <Provider store={store}>
           <Header />
           {children}
           <Footer />
-        </Providers>
+        </Provider>
       </body>
     </html>
   );

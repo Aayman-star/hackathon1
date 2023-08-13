@@ -9,9 +9,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
 
 const Header = () => {
-  const cartItems = useSelector(
-    (state: RootState) => state.cartSlice.totalItems
-  );
+  const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   return (
     <header className="w-full py-8 bg-white">
       <nav className="max-w-7xl p-2 mx-auto flex items-center space-x-20">
@@ -39,7 +37,7 @@ const Header = () => {
         <Input />
         <div className="relative">
           <span className="absolute right-1 top-0 rounded-full bg-zinc-800 w-5 h-5 text-white text-xs text-center">
-            {cartItems}
+            {totalItems}
           </span>
           <CartButton />
         </div>
