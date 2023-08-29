@@ -1,14 +1,10 @@
-"use client";
 import React from "react";
 import { client } from "@/lib1/sanityClient";
 import Image from "next/image";
 import { Image as IImage } from "sanity";
 import { urlForImage } from "../../../../sanity/lib/image";
-import { pid } from "process";
-import { useSelector, useDispatch } from "react-redux";
-import cartSlice, { cartActions } from "@/app/store/slice/cartSlice";
-import { RootState } from "@/app/store/store";
-import { useState } from "react";
+import { cookies } from "next/headers";
+
 import Quantity from "../Quantity";
 
 interface ProductDetails {
@@ -21,29 +17,26 @@ interface ProductDetails {
 }
 
 const page = async ({ params }: { params: { id: string } }) => {
-  const [Q, setQ] = useState(1);
-  const increaseQ = () => {
-    setQ(Q + 1);
-  };
-  const decreaseQ = () => {
-    setQ(Q - 1);
-  };
-  console.log(`parent:`, Q);
-  const pid = params.id;
-  // const itemQuantity = useSelector(
-  //   (state: RootState) => state.cartSlice.item_quantity
-  // );
+  //const [Q, setQ] = useState(1);
 
-  const dispatch = useDispatch();
+  //console.log(`parent:`, Q);
+  const pid = params.id;
 
   const addToCart = () => {
-    //dispatch(cartActions.addToCart({ pid: pid, itemQuantity: Q }));
+    //   dispatch(cartActions.addToCart({ pid: pid, itemQuantity: Q }));
   };
+
+  /*THIS IS THE SECTION WHERE I AM FETCHING DATA FROM THE DATABASE*/
+  const myCookie = cookies();
+  console.log("COOKIE");
+  //This is where you fetch the user_id
+  const myCookieOne = myCookie.get("user_id")?.value as string;
+  console.log(myCookieOne);
 
   const query = `*[_type == 'product' && _id == $pid]{title,price,image,category->{name}, producttype ->{ name }}`;
   //This is where the data is being fetched from the api
   const data: ProductDetails[] = await client.fetch(query, { pid: params.id });
-  // console.log(data);
+  //console.log(`IMAGE FROM THE PRODUCTS PAGE : `, data[0].image);
   // Defining the sizes
   const sizes: string[] = ["XS", "S", "M", "L", "XL"];
 
@@ -82,40 +75,13 @@ const page = async ({ params }: { params: { id: string } }) => {
                   </span>
                 ))}
               </div>
-              {/* <Quantity Q1={Q} increaseQ1={increaseQ} decreaseQ1={decreaseQ} /> */}
-              {/*Qunatity Component written here */}
-
-              <div className="flex items-center gap-x-10">
-                <p>Quantity : </p>
-                <div className="flex items-center gap-x-4">
-                  <button
-                    onClick={decreaseQ}
-                    className="bg-zinc-800 text-zinc-50 px-2 py-1 rounded-md shadow-md">
-                    -
-                  </button>
-
-                  <p>{Q}</p>
-
-                  <button
-                    onClick={increaseQ}
-                    className="bg-zinc-800 text-zinc-50 px-2 py-1 rounded-md shadow-md">
-                    +
-                  </button>
-                </div>
-              </div>
-              {/*Quantity Component ends here*/}
-            </div>
-
-            <p className="font-semibold text-xl ml-20">
-              ${item.price.toFixed(2)}
-            </p>
-            <div>
-              <button
-                onClick={addToCart}
-                className="px-8 py-4 ml-20 bg-zinc-900 text-zinc-50 text-sm rounded-sm hover:scale-105">
-                {" "}
-                Add to Cart
-              </button>
+              <Quantity
+                pid={params.id}
+                iPrice={item.price}
+                productName={item.title}
+                image={urlForImage(item.image).url()}
+                userId={myCookieOne}
+              />
             </div>
           </div>
         ))}

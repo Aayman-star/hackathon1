@@ -1,14 +1,19 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import Logo from "public/Logo.webp";
 import Link from "next/link";
 import CartButton from "./CartButton";
 import { Input } from "../../../components/ui/input";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../store/store";
+import { fetchCartItems } from "../store/slice/cartSlice";
 
 const Header = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  // useEffect(() => {
+  //   dispatch(fetchCartItems(userId));
+  // }, [dispatch, userId]);
   const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   return (
     <header className="w-full py-8 bg-white">

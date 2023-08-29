@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Providers from "./components/Provider";
 import { store } from "@/app/store/store";
 import { Provider } from "react-redux";
+import { Toaster } from "react-hot-toast";
 
 // const inter = Inter({ subsets: ["latin"] });
 const sora = Sora({ subsets: ["latin"] });
@@ -22,14 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={sora.className}>
-        <Provider store={store}>
+    <Provider store={store}>
+      <html lang="en">
+        <body className={sora.className}>
           <Header />
           {children}
+          <Toaster position="top-right" reverseOrder={false} />
           <Footer />
-        </Provider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </Provider>
   );
 }
