@@ -9,6 +9,7 @@ import cartSlice from "../store/slice/cartSlice";
 import { fetchCartItems } from "../store/slice/cartSlice";
 import { Image as IImage } from "sanity";
 import { urlForImage } from "../../../sanity/lib/image";
+import { useRouter } from "next/navigation";
 
 interface CartProp {
   userId: string;
@@ -38,9 +39,11 @@ const Cart = ({ userId }: CartProp) => {
   // //       return Result;
   // //     }
   // //   };
+  const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchCartItems(userId));
+    // router.push("/Cart");
   }, [dispatch, userId]);
 
   const { CartItems } = useSelector((state: RootState) => state.cartSlice);
@@ -48,6 +51,8 @@ const Cart = ({ userId }: CartProp) => {
   console.log(`FROM THE CART PAGE:`, CartItems);
   console.log(`DETAILED INFO HERE :`);
   console.log(CartItems.map((CartItem) => CartItem));
+
+  //  const imageNew : Array<IImage> =  CartItems.map((item)=> await fetch(`/api/sanity?product_id=${item.product_id}`));
 
   return (
     <div className="min-h-screen w-full">
@@ -59,9 +64,9 @@ const Cart = ({ userId }: CartProp) => {
           CartItems.map((item: any) => (
             <CartDisplay
               productId={item.product_id}
-              productQuantity={item.item_quantity}
+              productQuantity={item.quantity}
               productName={item.product_name}
-              pImage={JSON.stringify(item.pImage)}
+              pImage={item.image}
               iPrice={item.price}
               userId={userId}
             />

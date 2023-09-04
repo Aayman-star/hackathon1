@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "../store/store";
 import { cartActions } from "../store/slice/cartSlice";
 import { toast, Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 //import { fetchCartItems } from "../store/slice/cartSlice";
 //import Quantity from "../ProductDetails/displayQuantity";
 
@@ -20,10 +21,7 @@ interface CartProps {
   iPrice: number;
   userId: string;
 }
-// interface CartItemProp {
-//   CartItem: CartProps;
 
-// }
 const CartDisplay = ({
   productId,
   productQuantity,
@@ -32,6 +30,27 @@ const CartDisplay = ({
   iPrice,
   userId,
 }: CartProps) => {
+  // const router = useRouter();
+  // console.log(`THIS IS ROUTER VALUE:`, router);
+  // const href = "/Cart";
+  // useEffect(() => {
+  //   router.push(href);
+  // }, []);
+  const QStore = productQuantity;
+
+  // const [Qty, setQty] = useState(productQuantity);
+  // console.log(`Qty:${Qty}`);
+  const [localQty, setLocalQty] = useState(productQuantity);
+
+  console.log(`LocalQty:${localQty}`);
+
+  const localQtyUp = () => {
+    setLocalQty(localQty + 1);
+  };
+  const localQtyDown = () => {
+    setLocalQty(localQty - 1);
+  };
+
   const dispatch = useDispatch<AppDispatch>();
 
   const { totalItems, totalPrice } = useSelector(
@@ -44,6 +63,7 @@ const CartDisplay = ({
   console.log(`PRODUCT NAME :`, productName);
   console.log(`PRODUCT QUANTITY: `, productQuantity);
   console.log(`TOTAL ITEMS : ${totalItems},TOTAL PRICE : ${totalPrice} `);
+
   /**FETCH EXISTING DATA FROM THE DATABASE */
 
   console.log(`RECEIVED USER ID IN THE CARTDISPLAY FILE :${userId}`);
@@ -59,7 +79,8 @@ const CartDisplay = ({
   };
   /**INCREASING ITEM QUANTITY IN THE DATABASE */
   const increaseItemQty = async () => {
-    const qtyUp = productQuantity + 1;
+    const qtyUp = localQty + 1;
+    console.log(`qtyUp : ${qtyUp}`);
     const newPrice = qtyUp * iPrice;
 
     const res = await fetch(
@@ -76,7 +97,8 @@ const CartDisplay = ({
 
   /**DeCREASING ITEM QUANTITY IN THE DATABASE */
   const decreaseItemQty = async () => {
-    const qtyDown = productQuantity - 1;
+    const qtyDown = localQty - 1;
+    console.log(`qtyDown : ${qtyDown}`);
     const newPrice = qtyDown * iPrice;
 
     const res = await fetch(
@@ -100,6 +122,7 @@ const CartDisplay = ({
     dispatch(cartActions.removeFromCart({ pid: productId }));
   };
   const handleOneUp = () => {
+    localQtyUp();
     toast.promise(increaseItemQty(), {
       loading: `Update in progress`,
       success: `update successful`,
@@ -113,6 +136,7 @@ const CartDisplay = ({
     );
   };
   const handleOneDown = () => {
+    localQtyDown();
     toast.promise(decreaseItemQty(), {
       loading: `Update in progress`,
       success: `update successful`,
@@ -160,7 +184,7 @@ const CartDisplay = ({
               </h3>
             </div>
             <div className="flex items-center gap-x-4 ">
-              {productQuantity === 1 ? (
+              {localQty === 1 ? (
                 <button onClick={handleDelete}>
                   <Image
                     src="/trash.png"
@@ -180,16 +204,14 @@ const CartDisplay = ({
                 </button>
               )}
 
-              <p className="text-zinc-900 font-medium text-lg">
-                {productQuantity}
-              </p>
+              <p className="text-zinc-900 font-medium text-lg">{localQty}</p>
               <button onClick={handleOneUp}>
                 <Image src="/plus.png" alt="plus icon" width={20} height={20} />
               </button>
             </div>
             <div>
               <h3 className="text-zinc-900 font-medium text-lg">
-                ${(iPrice * productQuantity).toFixed(2)}
+                ${(iPrice * localQty).toFixed(2)}
               </h3>
             </div>
           </div>

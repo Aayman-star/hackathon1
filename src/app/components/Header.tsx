@@ -1,20 +1,24 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Logo from "public/Logo.webp";
 import Link from "next/link";
 import CartButton from "./CartButton";
-import { Input } from "../../../components/ui/input";
-import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
+import { useSelector, useDispatch } from "react-redux";
 import { fetchCartItems } from "../store/slice/cartSlice";
+import { Input } from "../../../components/ui/input";
 
 const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
   // useEffect(() => {
   //   dispatch(fetchCartItems(userId));
   // }, [dispatch, userId]);
-  const { totalItems } = useSelector((state: RootState) => state.cartSlice);
+  // const [tQty, setTQty] = useState(0);
+  // useEffect(() => {
+  //   useSelector((state: RootState) => state.cartSlice.totalItems);
+  //   setTQty(totalItems);
+  // }, []);
   return (
     <header className="w-full py-8 bg-white">
       <nav className="max-w-7xl p-2 mx-auto flex items-center space-x-20">
@@ -42,7 +46,7 @@ const Header = () => {
         <Input />
         <div className="relative">
           <span className="absolute right-1 top-0 rounded-full bg-zinc-800 w-5 h-5 text-white text-xs text-center">
-            {totalItems}
+            {0}
           </span>
           <CartButton />
         </div>
