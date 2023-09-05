@@ -10,6 +10,8 @@ import { fetchCartItems } from "../store/slice/cartSlice";
 import { Image as IImage } from "sanity";
 import { urlForImage } from "../../../sanity/lib/image";
 import { useRouter } from "next/navigation";
+import CartDisplay1 from "./CartDisplay1";
+import { P } from "drizzle-orm/db.d-cf0abe10";
 
 interface CartProp {
   userId: string;
@@ -52,37 +54,37 @@ const Cart = ({ userId }: CartProp) => {
   console.log(`DETAILED INFO HERE :`);
   console.log(CartItems.map((CartItem) => CartItem));
 
-  //  const imageNew : Array<IImage> =  CartItems.map((item)=> await fetch(`/api/sanity?product_id=${item.product_id}`));
-
   return (
-    <div className="min-h-screen w-full">
-      <h2 className="text-3xl font-bold text-zinc-900 text-center mb-10">
-        Shopping Cart
-      </h2>
-      <div>
-        {CartItems.length ? (
-          CartItems.map((item: any) => (
-            <CartDisplay
-              productId={item.product_id}
-              productQuantity={item.quantity}
-              productName={item.product_name}
-              pImage={item.image}
-              iPrice={item.price}
-              userId={userId}
-            />
-          ))
-        ) : (
-          <p className="text-center text-xl italic">Your Cart is Empty</p>
-        )}
+    <>
+      <div className="min-h-screen w-full">
+        <h2 className="text-3xl font-bold text-zinc-900 text-center mb-10">
+          Shopping Cart
+        </h2>
+        <div>
+          {CartItems.length ? (
+            CartItems.map((item: any) => (
+              <CartDisplay1
+                productId={item.product_id}
+                productQuantity={item.quantity}
+                productName={item.product_name}
+                pImage={item.image}
+                iPrice={item.price}
+                userId={userId}
+              />
+            ))
+          ) : (
+            <p className="text-center text-xl italic">Your Cart is Empty</p>
+          )}
+        </div>
+        <div className="mt-10 grid place-content-center">
+          <Link
+            href={"/"}
+            className="bg-zinc-800 text-zinc-50  px-6 py-4 rounded-md shadow-lg hover:scale-110">
+            Retrun to Shop
+          </Link>
+        </div>
       </div>
-      <div className="mt-10 grid place-content-center">
-        <Link
-          href={"/"}
-          className="bg-zinc-800 text-zinc-50  px-6 py-4 rounded-md shadow-lg hover:scale-110">
-          Retrun to Shop
-        </Link>
-      </div>
-    </div>
+    </>
   );
 };
 

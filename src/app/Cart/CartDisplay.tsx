@@ -33,22 +33,27 @@ const CartDisplay = ({
   // const router = useRouter();
   // console.log(`THIS IS ROUTER VALUE:`, router);
   // const href = "/Cart";
-  // useEffect(() => {
-  //   router.push(href);
-  // }, []);
+
   const QStore = productQuantity;
 
   // const [Qty, setQty] = useState(productQuantity);
   // console.log(`Qty:${Qty}`);
-  const [localQty, setLocalQty] = useState(productQuantity);
+  const [quantity, setQuantity] = useState(productQuantity);
+  console.log(`QUANTITY IN THE STATE`, quantity);
+  const [pName, setPName] = useState(productName);
+  console.log(`NAME IN THE STATE`, pName);
+  // useEffect(() => {
+  //   router.push(href);
+  //   setLocalQty(productQuantity);
+  // }, []);
 
-  console.log(`LocalQty:${localQty}`);
+  //console.log(`LocalQty:${localQty}`);
 
   const localQtyUp = () => {
-    setLocalQty(localQty + 1);
+    setQuantity(quantity + 1);
   };
   const localQtyDown = () => {
-    setLocalQty(localQty - 1);
+    setQuantity(quantity - 1);
   };
 
   const dispatch = useDispatch<AppDispatch>();
@@ -79,7 +84,7 @@ const CartDisplay = ({
   };
   /**INCREASING ITEM QUANTITY IN THE DATABASE */
   const increaseItemQty = async () => {
-    const qtyUp = localQty + 1;
+    const qtyUp = quantity + 1;
     console.log(`qtyUp : ${qtyUp}`);
     const newPrice = qtyUp * iPrice;
 
@@ -97,7 +102,7 @@ const CartDisplay = ({
 
   /**DeCREASING ITEM QUANTITY IN THE DATABASE */
   const decreaseItemQty = async () => {
-    const qtyDown = localQty - 1;
+    const qtyDown = quantity - 1;
     console.log(`qtyDown : ${qtyDown}`);
     const newPrice = qtyDown * iPrice;
 
@@ -184,7 +189,7 @@ const CartDisplay = ({
               </h3>
             </div>
             <div className="flex items-center gap-x-4 ">
-              {localQty === 1 ? (
+              {quantity === 1 ? (
                 <button onClick={handleDelete}>
                   <Image
                     src="/trash.png"
@@ -204,14 +209,14 @@ const CartDisplay = ({
                 </button>
               )}
 
-              <p className="text-zinc-900 font-medium text-lg">{localQty}</p>
+              <p className="text-zinc-900 font-medium text-lg">{quantity}</p>
               <button onClick={handleOneUp}>
                 <Image src="/plus.png" alt="plus icon" width={20} height={20} />
               </button>
             </div>
             <div>
               <h3 className="text-zinc-900 font-medium text-lg">
-                ${(iPrice * localQty).toFixed(2)}
+                ${(iPrice * quantity).toFixed(2)}
               </h3>
             </div>
           </div>
