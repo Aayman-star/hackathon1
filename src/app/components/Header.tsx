@@ -12,10 +12,12 @@ import { Input } from "../../../components/ui/input";
 const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { totalItems } = useSelector((state: RootState) => state.cartSlice);
-  const [tItems, setTItems] = useState(totalItems);
-  useEffect(() => {
-    setTItems(totalItems);
-  }, [totalItems]);
+  // const oldValue = totalItems;
+  // const [tItems, setTItems] = useState(totalItems);
+  // useEffect(() => {
+  //   setTItems(totalItems);
+  // }, [totalItems]);
+
   // useEffect(() => {
   //   dispatch(fetchCartItems(userId));
   // }, [dispatch, userId]);
@@ -51,7 +53,8 @@ const Header = () => {
         <Input />
         <div className="relative">
           <span className="absolute right-1 top-0 rounded-full bg-zinc-800 w-5 h-5 text-white text-xs text-center">
-            {tItems}
+            {/* {!isNaN(tItems) && tItems} */}
+            {!isNaN(totalItems) && totalItems}
           </span>
           <CartButton />
         </div>

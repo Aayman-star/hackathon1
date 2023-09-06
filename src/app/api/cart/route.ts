@@ -4,7 +4,8 @@
 
  import {v4 as uuid} from 'uuid'
  import { cookies } from "next/headers";
-import { eq,and } from "drizzle-orm";
+import { eq,and, asc } from "drizzle-orm";
+import { cartActions } from "@/app/store/slice/cartSlice";
 
 
 interface cartItem{
@@ -21,7 +22,7 @@ export const GET = async(request : NextRequest) =>{
     const req = request.nextUrl;
     const uid =  req.searchParams.get('user_id') as string
    try{
-    const res: Array<cartItem>  = await db.select().from(cartTable).where(eq(cartTable.user_id,uid));
+    const res: Array<cartItem>  = await db.select().from(cartTable).where(eq(cartTable.user_id,uid)).orderBy(asc(cartTable.id));
     const cartItems = res.map((item) => ({
         product_id:item.product_id,
         product_name:item.product_name,
@@ -92,6 +93,8 @@ export const PUT = async(request:NextRequest) =>{
             quantity: data.quantity,
             total_price: data.total_price
            }).where(and(eq(cartTable.user_id, userId),eq(cartTable.product_id,productId))).returning();
+
+           
 
            return NextResponse.json({updatedData},{status:200})
         }

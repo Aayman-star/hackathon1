@@ -51,10 +51,10 @@ const CartDisplay1 = ({
   console.log(`PRODUCT IMAGE:${pImage}`);
   console.log(`PRODUCT PRICE : ${iPrice}`);
 
-  const { CartItems, totalItems, totalPrice } = useSelector(
+  const { totalItems, totalPrice } = useSelector(
     (state: RootState) => state.cartSlice
   );
-  console.log(`RECEIVED DATA:`, CartItems, totalItems, totalPrice);
+  console.log(`RECEIVED DATA:`, totalItems, totalPrice);
 
   /**FETCH EXISTING DATA FROM THE DATABASE */
 
@@ -68,6 +68,7 @@ const CartDisplay1 = ({
     } catch (error) {
       console.log(`Something went wrong: `, error);
     }
+    dispatch(fetchCartItems(userId));
   };
   /**INCREASING ITEM QUANTITY IN THE DATABASE */
   const increaseItemQty = async () => {
@@ -85,6 +86,7 @@ const CartDisplay1 = ({
         }),
       }
     );
+    dispatch(fetchCartItems(userId));
   };
 
   /**DeCREASING ITEM QUANTITY IN THE DATABASE */
@@ -103,6 +105,7 @@ const CartDisplay1 = ({
         }),
       }
     );
+    dispatch(fetchCartItems(userId));
   };
 
   const handleDelete = () => {

@@ -1,14 +1,10 @@
 import { createSlice,createAsyncThunk } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { RootState } from '../store';
- import { POST } from '@/app/api/cart/route';
- import { Image as IImage } from 'sanity';
- import { urlForImage } from '../../../../sanity/lib/image';
+import { POST } from '@/app/api/cart/route';
+import { Image as IImage } from 'sanity';
+import { urlForImage } from '../../../../sanity/lib/image';
 
-
-
-  
- 
 
 export interface Product{
   
@@ -26,6 +22,8 @@ export interface Cart {
     CartItems : Array<Product>;
     totalItems:number;
     totalPrice:number;
+    isLoading:boolean;
+    error:any;
     
  }
 
@@ -34,6 +32,8 @@ const initialState : Cart = {
   CartItems : [],
   totalItems:0,
   totalPrice:0,
+  isLoading:false,
+  error:null
 }
   
 export const fetchCartItems = createAsyncThunk('cart/fetchCartItems',
@@ -125,16 +125,21 @@ export const cartSlice = createSlice({
 
 },
 extraReducers:(builder)=>{
+  builder.addCase(fetchCartItems.pending,(state)=>{
+    state.isLoading = true;
+  });
   builder.addCase(fetchCartItems.fulfilled,(state,action:PayloadAction<any>)=>{
     state.CartItems = action.payload.cartItems
-    
-  
     state.totalItems = action.payload.totalQuantity;
     state.totalPrice = action.payload.totalPrice;
+    state.isLoading = false;
     console.log(`From the async reducer :`,state.CartItems,state.totalItems,state.totalPrice)
     console.log(`TRYING TO FIND THE DATATYPE OF IMAGES:`,state.CartItems.map((item)=> typeof item.pImage))
-  })
-  
+  });
+  builder.addCase(fetchCartItems.rejected,(state,action)=>{
+    state.isLoading = false;
+    state.error = action.error;
+  });
 }
     
 })
