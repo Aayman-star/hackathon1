@@ -8,6 +8,11 @@ import { RootState, AppDispatch } from "../store/store";
 import { cartActions } from "../store/slice/cartSlice";
 import { Toaster, toast } from "react-hot-toast";
 import { fetchCartItems } from "../store/slice/cartSlice";
+import {
+  TrashIcon,
+  PlusCircleIcon,
+  MinusCircleIcon,
+} from "@heroicons/react/20/solid";
 
 interface CartItemprop {
   productId: string;
@@ -146,70 +151,82 @@ const CartDisplay1 = ({
   };
   return (
     <>
-      <div className="max-w-7xl mx-auto p-2 border-2 border-t-black">
-        <div className="flex justify-center items-center gap-x-2 md:justify-between">
-          {/* Image */}
-          <div className="w-1/4 flex items-center gap-x-4">
-            <Image
-              className="hover:scale-105 duration-300"
-              src={pImage}
-              alt="product"
-              width={150}
-              height={100}
-            />
-            <div>
-              <h2 className="text-xl text-zinc-900 font-medium">
-                {productName}
-              </h2>
+      <div className="w-full p-2 grid grid-cols-[repeat(4,minmax(0,1fr))] mt-10 rounded-md border-2 border-zinc-900 md:max-w-7xl mx-auto ">
+        <div className="col-span-2 p-2 flex lg:place-items-center gap-x-2 md:col-span-4 lg:col-span-1">
+          <Image
+            className="hover:scale-105 duration-300"
+            src={pImage}
+            alt="product"
+            width={150}
+            height={100}
+          />
+          <div className="hidden md:block mt-8">
+            <h2 className="text-base md:text-xl text-zinc-900 font-medium">
+              {productName}
+            </h2>
+            <button onClick={handleDelete}>
+              {/* <Image
+                src="/trash.png"
+                alt="delete icon"
+                width={20}
+                height={20}
+              /> */}
+              <TrashIcon className="h-4 w-4 sm:h-7 sm:w-7" />
+            </button>
+          </div>
+        </div>
+        <div className="p-2 col-span-2 md:col-span-4 md:border-t-2 border-t-zinc-900 lg:border-none md:flex justify-between lg:col-span-3 lg:flex items-center lg:justify-around ">
+          <div className="sm:block md:hidden">
+            <h2 className="text-base md:text-xl text-zinc-900 font-medium">
+              {productName}
+            </h2>
+            <button onClick={handleDelete}>
+              {/* <Image
+                src="/trash.png"
+                alt="delete icon"
+                width={20}
+                height={20}
+              /> */}
+              <TrashIcon className="h-5 w-5 sm:h-7 sm:w-7" />
+            </button>
+          </div>
+          <h3 className="text-base text-zinc-900 font-normal md:text-lg">
+            ${iPrice.toFixed(2)}
+          </h3>
+          <div className="flex items-center gap-x-4 ">
+            {quantity === 1 ? (
               <button onClick={handleDelete}>
-                <Image
+                {/* <Image
                   src="/trash.png"
                   alt="delete icon"
                   width={20}
                   height={20}
-                />
+                /> */}
+                <TrashIcon className="h-5 w-5 sm:h-7 sm:w-7" />
               </button>
-            </div>
-          </div>
-          {/* Other Product Data */}
-          <div className="w-3/4 flex flex-col gap-y-5 md:flex-row grow justify-around">
-            <div>
-              <h3 className="text-zinc-900 font-medium text-lg">
-                ${iPrice.toFixed(2)}
-              </h3>
-            </div>
-            <div className="flex items-center gap-x-4 ">
-              {quantity === 1 ? (
-                <button onClick={handleDelete}>
-                  <Image
-                    src="/trash.png"
-                    alt="delete icon"
-                    width={20}
-                    height={20}
-                  />
-                </button>
-              ) : (
-                <button onClick={handleOneDown}>
-                  <Image
-                    src="/minus.png"
-                    alt="minus icon"
-                    width={20}
-                    height={20}
-                  />
-                </button>
-              )}
+            ) : (
+              <button onClick={handleOneDown}>
+                {/* <Image
+                  src="/minus.png"
+                  alt="minus icon"
+                  width={20}
+                  height={20}
+                /> */}
+                <MinusCircleIcon className="h-5 w-5 sm:h-7 sm:w-7" />
+              </button>
+            )}
 
-              <p className="text-zinc-900 font-medium text-lg">{quantity}</p>
-              <button onClick={handleOneUp}>
-                <Image src="/plus.png" alt="plus icon" width={20} height={20} />
-              </button>
-            </div>
-            <div>
-              <h3 className="text-zinc-900 font-medium text-lg">
-                ${(iPrice * quantity).toFixed(2)}
-              </h3>
-            </div>
+            <p className="text-base text-zinc-900 font-medium md:text-lg">
+              {quantity}
+            </p>
+            <button onClick={handleOneUp}>
+              {/* <Image src="/plus.png" alt="plus icon" width={20} height={20} /> */}
+              <PlusCircleIcon className="h-5 w-5 sm:h-7 sm:w-7" />
+            </button>
           </div>
+          <h3 className="text-base text-zinc-900 font-medium md:text-lg">
+            ${(iPrice * quantity).toFixed(2)}
+          </h3>
         </div>
       </div>
     </>
@@ -217,3 +234,75 @@ const CartDisplay1 = ({
 };
 
 export default CartDisplay1;
+
+/**This is my previous layout for the cart page */
+// <>
+//   <div className="max-w-7xl mx-auto p-2 border-2 border-t-black">
+//     <div className="flex items-center gap-x-2 md:justify-between">
+//       {/* Image */}
+//       <div className="w-full flex items-start gap-x-2 md:w-1/4 md:flex md:items-center md:gap-x-4">
+//         <Image
+//           className="hover:scale-105 duration-300"
+//           src={pImage}
+//           alt="product"
+//           width={150}
+//           height={100}
+//         />
+//         <div className="flex gap-x-1 md: flex-col md:items-start gap-y-1">
+//           <h2 className="text-base md:text-xl text-zinc-900 font-medium">
+//             {productName}
+//           </h2>
+//           <button onClick={handleDelete}>
+//             <Image
+//               src="/trash.png"
+//               alt="delete icon"
+//               width={20}
+//               height={20}
+//             />
+//           </button>
+//         </div>
+//       </div>
+//       {/* Other Product Data */}
+//       <div className="-ml-10 mt-12 flex flex-col gap-y-2  md:w-3/4  md:flex-row items-center grow justify-around">
+//         <div>
+//           <h3 className="text-base text-zinc-900 font-medium md:text-lg">
+//             ${iPrice.toFixed(2)}
+//           </h3>
+//         </div>
+//         <div className="flex items-center gap-x-4 ">
+//           {quantity === 1 ? (
+//             <button onClick={handleDelete}>
+//               <Image
+//                 src="/trash.png"
+//                 alt="delete icon"
+//                 width={20}
+//                 height={20}
+//               />
+//             </button>
+//           ) : (
+//             <button onClick={handleOneDown}>
+//               <Image
+//                 src="/minus.png"
+//                 alt="minus icon"
+//                 width={20}
+//                 height={20}
+//               />
+//             </button>
+//           )}
+
+//           <p className="text-base text-zinc-900 font-medium md:text-lg">
+//             {quantity}
+//           </p>
+//           <button onClick={handleOneUp}>
+//             <Image src="/plus.png" alt="plus icon" width={20} height={20} />
+//           </button>
+//         </div>
+//         <div>
+//           <h3 className="text-base text-zinc-900 font-medium md:text-lg">
+//             ${(iPrice * quantity).toFixed(2)}
+//           </h3>
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </>
