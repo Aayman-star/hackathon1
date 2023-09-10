@@ -151,7 +151,7 @@ const CartDisplay1 = ({
   };
   return (
     <>
-      <div className="w-full p-2 grid grid-cols-[repeat(4,minmax(0,1fr))] mt-10 rounded-md border-2 border-zinc-900 md:max-w-7xl mx-auto ">
+      <div className="w-full p-2 grid grid-cols-[repeat(4,minmax(0,1fr))] mt-10  border-2 border-t-zinc-800 border-b-zinc-800 lg:rounded-mdborder-zinc-900 md:max-w-7xl mx-auto ">
         <div className="col-span-2 p-2 flex lg:place-items-center gap-x-2 md:col-span-4 lg:col-span-1">
           <Image
             className="hover:scale-105 duration-300"

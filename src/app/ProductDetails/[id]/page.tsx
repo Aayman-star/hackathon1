@@ -42,21 +42,41 @@ const page = async ({ params }: { params: { id: string } }) => {
 
   return (
     <div className="min-h-screen max-w-7xl mx-auto grid place-content-center">
-      <div className="w-full flex items-start justify-between">
-        <div>
+      <div className="w-full flex flex-col items-start gap-y-4 lg:flex-row lg:items-start justify-between">
+        <div className="self-center lg:self-start">
+          {/* Image for mobile screen */}
           <Image
-            className="hover:scale-105 duration-300"
+            className=" hover:scale-105 duration-300 object-cover md:hidden"
             src={urlForImage(data[0].image).url()}
+            sizes="100vw"
+            width={300}
+            height={350}
             alt="product"
+          />
+          {/* Image for medium screen */}
+          <Image
+            className="hidden md:block hover:scale-105 duration-300 object-cover lg:hidden"
+            src={urlForImage(data[0].image).url()}
+            sizes="100vw"
+            width={450}
+            height={500}
+            alt="product"
+          />
+          {/* Image for large screen */}
+          <Image
+            className="hidden lg:block hover:scale-105 duration-300 object-cover"
+            src={urlForImage(data[0].image).url()}
+            sizes="100vw"
             width={500}
-            height={600}
+            height={550}
+            alt="product"
           />
         </div>
 
         {data.map((item) => (
-          <div className="w-[500px] h-[600px]  flex flex-col items-start space-y-12">
-            <div className="ml-20">
-              <h1 className="text-3xl text-zinc-900 font-semibold">
+          <div className="w-[500px] h-[600px]   flex flex-col items-center gap-y-6 md:items-start md:space-y-12">
+            <div className="ml-10 p-2">
+              <h1 className="text-2xl font-bold md:text-3xl text-zinc-900 md:font-semibold">
                 {item.title}
               </h1>
               <p className="font-semibold text-xl text-gray-400">
@@ -64,7 +84,7 @@ const page = async ({ params }: { params: { id: string } }) => {
                 {item.producttype.name}
               </p>
             </div>
-            <div className="ml-20 flex flex-col space-y-4">
+            <div className="ml-14 lg:ml-16 flex flex-col space-y-4">
               <h3 className="font-semibold text-lg">Select Size</h3>
               <div className="flex items-center">
                 {sizes.map((size, i) => (

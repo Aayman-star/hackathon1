@@ -54,12 +54,12 @@ const DisplayProducts = ({ _id, title, image, index, price }: DisplayData) => {
         </Link>
         <p className="font-bold text-lg text-gray-800">${price}</p>
       </div>
-      <button
+      {/* <button
         // onClick={() => addToCart(_id)}
         className="px-2 py-1 bg-zinc-900 text-zinc-50 text-sm rounded-sm hover:scale-105">
         {" "}
         Add to Cart
-      </button>
+      </button> */}
     </>
   );
 };

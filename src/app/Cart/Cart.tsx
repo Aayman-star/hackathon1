@@ -24,23 +24,6 @@ interface CartItem {
   iPrice: number;
 }
 const Cart = ({ userId }: CartProp) => {
-  // //   const fetchData = async () => {
-  // //     const result = await fetch(`/api/cart?user_id=${userId}`);
-  // //     if (!result.ok) {
-  // //       console.log(`I AM HERE`);
-  // //       throw new Error(`Trouble fetching the data`);
-  // //     } else {
-  // //       const Result = await result.json();
-  // //       const { cartItems, totalPrice, totalQuantity } = Result;
-  // //       console.log(
-  // //         `RESULT FROM THE DATABASE :`,
-  // //         cartItems,
-  // //         totalQuantity,
-  // //         totalPrice
-  // //       );
-  // //       return Result;
-  // //     }
-  // //   };
   const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
@@ -111,3 +94,22 @@ export default Cart;
 //     {item.id}--{item.user_id}--{item.product_id}
 //   </p>
 // ));
+
+/**Additional code written to fetch data */
+// //   const fetchData = async () => {
+// //     const result = await fetch(`/api/cart?user_id=${userId}`);
+// //     if (!result.ok) {
+// //       console.log(`I AM HERE`);
+// //       throw new Error(`Trouble fetching the data`);
+// //     } else {
+// //       const Result = await result.json();
+// //       const { cartItems, totalPrice, totalQuantity } = Result;
+// //       console.log(
+// //         `RESULT FROM THE DATABASE :`,
+// //         cartItems,
+// //         totalQuantity,
+// //         totalPrice
+// //       );
+// //       return Result;
+// //     }
+// //   };
