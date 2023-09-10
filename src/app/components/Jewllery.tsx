@@ -11,8 +11,8 @@ const Jewllery = () => {
         {/* Main housing div */}
         <div className="w-4/5 mx-auto flex flex-col gap-y-4 lg:flex-row items-center justify-between">
           {/* Left Div */}
-          <div className="lg:flex-1">
-            <h1 className="text-7xl lg:text-[7rem] leading-loose lg:leading-none tracking-wide lg:tracking-tighter font-bold text-gray-400/30">
+          <div className="lg:flex-1 lg:p-8">
+            <h1 className="text-7xl  leading-loose tracking-wide lg:leading-none lg:text-[7rem] lg:tracking-tighter font-bold text-gray-400/30">
               Different From Others
             </h1>{" "}
             <div className="w-3/4 -mt-96 md:-mt-[16rem] lg:-mt-80 grid lg:grid-cols-[repeat(2,auto)] gap-y-2 lg:gap-x-14 lg:gap-y-10">

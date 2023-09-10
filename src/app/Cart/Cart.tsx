@@ -11,6 +11,7 @@ import { Image as IImage } from "sanity";
 import { urlForImage } from "../../../sanity/lib/image";
 import { useRouter } from "next/navigation";
 import CartDisplay1 from "./CartDisplay1";
+
 import { P } from "drizzle-orm/db.d-cf0abe10";
 
 interface CartProp {

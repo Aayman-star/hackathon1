@@ -8,6 +8,7 @@ import { RootState, AppDispatch } from "../store/store";
 import { cartActions } from "../store/slice/cartSlice";
 import { Toaster, toast } from "react-hot-toast";
 import { fetchCartItems } from "../store/slice/cartSlice";
+
 import {
   TrashIcon,
   PlusCircleIcon,
@@ -151,7 +152,7 @@ const CartDisplay1 = ({
   };
   return (
     <>
-      <div className="w-full p-2 grid grid-cols-[repeat(4,minmax(0,1fr))] mt-10  border-2 border-t-zinc-800 border-b-zinc-800 lg:rounded-mdborder-zinc-900 md:max-w-7xl mx-auto ">
+      <div className="w-full p-2 grid grid-cols-[repeat(4,minmax(0,1fr))] mt-10  border-2 border-t-zinc-800 border-b-zinc-800 lg:rounded-md lg:border-zinc-900 md:max-w-7xl mx-auto ">
         <div className="col-span-2 p-2 flex lg:place-items-center gap-x-2 md:col-span-4 lg:col-span-1">
           <Image
             className="hover:scale-105 duration-300"
@@ -224,7 +225,7 @@ const CartDisplay1 = ({
               <PlusCircleIcon className="h-5 w-5 sm:h-7 sm:w-7" />
             </button>
           </div>
-          <h3 className="text-base text-zinc-900 font-medium md:text-lg">
+          <h3 className="text-base text-zinc-900 font-semibold md:text-lg">
             ${(iPrice * quantity).toFixed(2)}
           </h3>
         </div>
