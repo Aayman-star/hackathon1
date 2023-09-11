@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 //import { cookies } from "next/headers";
 import CartDisplay from "./CartDisplay";
@@ -11,6 +11,7 @@ import { Image as IImage } from "sanity";
 import { urlForImage } from "../../../sanity/lib/image";
 import { useRouter } from "next/navigation";
 import CartDisplay1 from "./CartDisplay1";
+import TotalPrice from "./TotalPrice";
 
 import { P } from "drizzle-orm/db.d-cf0abe10";
 
@@ -25,14 +26,17 @@ interface CartItem {
   iPrice: number;
 }
 const Cart = ({ userId }: CartProp) => {
-  const router = useRouter();
+  //const router = useRouter();
   const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
     dispatch(fetchCartItems(userId));
-    // router.push("/Cart");
   }, [dispatch, userId]);
 
-  const { CartItems } = useSelector((state: RootState) => state.cartSlice);
+  const { CartItems, totalPrice } = useSelector(
+    (state: RootState) => state.cartSlice
+  );
+
   console.log(`Here is the data from the CART ITEMS:`);
   console.log(`FROM THE CART PAGE:`, CartItems);
   console.log(`DETAILED INFO HERE :`);
@@ -60,6 +64,11 @@ const Cart = ({ userId }: CartProp) => {
             <p className="text-center text-xl italic">Your Cart is Empty</p>
           )}
         </div>
+        {CartItems.length && (
+          <div className="p-4 w-full mx-auto lg:max-w-7xl lg:mx-auto grid place-content-end">
+            <TotalPrice />
+          </div>
+        )}
         <div className="mt-10 grid place-content-center">
           <Link
             href={"/"}

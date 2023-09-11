@@ -162,7 +162,7 @@ const CartDisplay1 = ({
             height={100}
           />
           <div className="hidden md:block mt-8">
-            <h2 className="text-base md:text-xl text-zinc-900 font-medium">
+            <h2 className="text-base md:text-xl text-zinc-800 font-medium">
               {productName}
             </h2>
             <button onClick={handleDelete}>
@@ -191,7 +191,7 @@ const CartDisplay1 = ({
               <TrashIcon className="h-5 w-5 sm:h-7 sm:w-7" />
             </button>
           </div>
-          <h3 className="text-base text-zinc-900 font-normal md:text-lg">
+          <h3 className="text-base text-zinc-800 font-normal md:text-lg">
             ${iPrice.toFixed(2)}
           </h3>
           <div className="flex items-center gap-x-4 ">
@@ -225,7 +225,7 @@ const CartDisplay1 = ({
               <PlusCircleIcon className="h-5 w-5 sm:h-7 sm:w-7" />
             </button>
           </div>
-          <h3 className="text-base text-zinc-900 font-semibold md:text-lg">
+          <h3 className="text-base text-zinc-800 font-semibold md:text-lg">
             ${(iPrice * quantity).toFixed(2)}
           </h3>
         </div>
