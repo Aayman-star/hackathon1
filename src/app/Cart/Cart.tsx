@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation";
 import CartDisplay1 from "./CartDisplay1";
 import TotalPrice from "./TotalPrice";
 
-import { P } from "drizzle-orm/db.d-cf0abe10";
+//import { P } from "drizzle-orm/db.d-cf0abe10";
 
 interface CartProp {
   userId: string;
@@ -64,10 +64,12 @@ const Cart = ({ userId }: CartProp) => {
             <p className="text-center text-xl italic">Your Cart is Empty</p>
           )}
         </div>
-        {CartItems.length && (
+        {CartItems.length ? (
           <div className="p-4 w-full mx-auto lg:max-w-7xl lg:mx-auto grid place-content-end">
             <TotalPrice />
           </div>
+        ) : (
+          ""
         )}
         <div className="mt-10 grid place-content-center">
           <Link

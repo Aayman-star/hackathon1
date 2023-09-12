@@ -158,7 +158,7 @@ const CartDisplay1 = ({
             className="hover:scale-105 duration-300"
             src={pImage}
             alt="product"
-            width={150}
+            width={120}
             height={100}
           />
           <div className="hidden md:block mt-8">
