@@ -11,7 +11,7 @@ const Hero = () => {
   return (
     <>
       <div className="max-w-full p-2">
-        <div className="w-4/5  mx-auto p-4 bg-zinc-50 lg:flex items-center justify-between">
+        <div className="w-4/5  mx-auto p-4 bg-white lg:flex items-center justify-between">
           {/* Left Div */}
           <div className="flex flex-col items-start gap-y-4 lg:flex-1">
             <p className="bg-blue-300 px-4 py-2 rounded-md text-blue-800 font-semibold">

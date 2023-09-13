@@ -25,7 +25,7 @@ const Footer = () => {
             </p>
           </div>
           <div className="mb-2 ml-14 justify-self-start  md:justify-self-center flex flex-col gap-y-2">
-            <h3 className="font-semibold text-gray-600 text-lg">Company</h3>
+            <h3 className="font-semibold text-gray-700 text-lg">Company</h3>
             <ul className="space-y-2 text-gray-500">
               {Company.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -33,7 +33,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="mb-2 ml-14 md:ml-28 justify-self-start md:justify-self-start flex flex-col gap-y-2">
-            <h3 className="font-semibold text-gray-600 text-lg">Support</h3>
+            <h3 className="font-semibold text-gray-700 text-lg">Support</h3>
             <ul className="space-y-4 text-gray-500">
               {Support.map((item, i) => (
                 <li key={i}>{item}</li>
@@ -41,7 +41,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className="mb-2 ml-14 justify-self-start md:justify-self-center flex flex-col gap-y-2">
-            <h3 className="font-semibold text-gray-600 text-lg">Contact</h3>
+            <h3 className="font-semibold text-gray-700 text-lg">Contact</h3>
             <ul className="space-y-4 text-gray-500">
               {Contact.map((item, i) => (
                 <li key={i}>{item}</li>
