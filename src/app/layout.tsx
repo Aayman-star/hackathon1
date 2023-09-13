@@ -5,9 +5,10 @@ import { Sora } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Providers from "./components/Provider";
-import { store } from "@/app/store/store";
-import { Provider } from "react-redux";
-import { Toaster } from "react-hot-toast";
+// import Providers from "./components/Provider";
+// import { store } from "@/app/store/store";
+// import { Provider } from "react-redux";
+// import { Toaster } from "react-hot-toast";
 
 // const inter = Inter({ subsets: ["latin"] });
 const sora = Sora({ subsets: ["latin"] });
@@ -25,12 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={sora.className}>
-        <Provider store={store}>
+        <Providers>
           <Header />
           {children}
-          <Toaster position="top-right" reverseOrder={false} />
+
           <Footer />
-        </Provider>
+        </Providers>
       </body>
     </html>
   );
