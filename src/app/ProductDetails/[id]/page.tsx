@@ -86,9 +86,11 @@ const page = async ({ params }: { params: { id: string } }) => {
                 {item.producttype.name}
               </p>
             </div>
-            <div className="ml-14 lg:ml-16 flex flex-col space-y-4">
-              <h3 className="font-semibold text-lg">Select Size</h3>
-              <div className="flex items-center">
+            <div className="ml-14 lg:ml-16 lg:flex flex-col space-y-4">
+              <h3 className="hidden lg:block lg:font-semibold text-lg">
+                Select Size
+              </h3>
+              <div className="hidden lg:flex items-center">
                 {sizes.map((size, i) => (
                   <span
                     className="w-8 h-8 rounded-full grid place-content-center font-semibold text-center text-gray-500 p-6 mr-4 hover:shadow-lg hover:bg-slate-200"

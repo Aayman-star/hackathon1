@@ -76,7 +76,7 @@ const Quantity = ({ pid, iPrice, productName, image, userId }: QProps) => {
 
   return (
     <>
-      <div className="flex items-center gap-x-10 mb-10">
+      <div className="mb-8 flex items-center gap-x-10 lg:mb-10">
         <p>Quantity : </p>
         <div className="flex items-center gap-x-4">
           <button
@@ -98,7 +98,7 @@ const Quantity = ({ pid, iPrice, productName, image, userId }: QProps) => {
           </button>
         </div>
       </div>
-      <div className="mt-28 -ml-20 flex items-center gap-x-5">
+      <div className="mt-28 -ml-20 flex items-center  gap-x-3 lg:gap-x-5">
         <div>
           <button
             onClick={AddToCart}

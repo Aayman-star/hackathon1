@@ -38,7 +38,7 @@ const Header = () => {
               <Bars3Icon className="w-5 h-5 md:w-8 md:h-8" />
             </button>
           ) : (
-            <div className="w-full h-screen -mt-10 bg-zinc-50 relative">
+            <div className="w-full h-screen -mt-10 bg-white relative">
               <button
                 className="absolute top-4 right-4"
                 onClick={() => setToggle(!toggle)}>

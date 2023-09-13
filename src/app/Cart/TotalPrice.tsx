@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../store/store";
+import CheckOutBtn from "./CheckOutBtn";
 const TotalPrice = () => {
   const { totalPrice } = useSelector((state: RootState) => state.cartSlice);
   const [localTotal, setLocalTotal] = useState(totalPrice);
@@ -9,14 +10,20 @@ const TotalPrice = () => {
   }, [totalPrice]);
   return (
     <>
-      {isNaN(localTotal) ? (
-        <p className="font-bold text-zinc-700 text-xl lg:text-2xl"> ...</p>
-      ) : (
-        <p className="font-bold text-zinc-700 text-xl lg:text-2xl">
+      <div className="flex flex-col gap-y-2">
+        {isNaN(localTotal) ? (
+          <p className="font-bold text-zinc-700 text-xl lg:text-2xl"> ...</p>
+        ) : (
+          <p className="font-bold text-zinc-700 text-xl lg:text-2xl">
+            {" "}
+            SUBTOTAL : ${localTotal.toFixed(2)}
+          </p>
+        )}
+        <div className="self-end">
           {" "}
-          SUBTOTAL : ${localTotal.toFixed(2)}
-        </p>
-      )}
+          <CheckOutBtn />
+        </div>
+      </div>
     </>
   );
 };

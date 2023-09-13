@@ -18,7 +18,7 @@ const Hero = () => {
               SALE 70%
             </p>
 
-            <h1 className="text-[46px] leading-none text-zinc-800 font-bold lg:text-6xl">
+            <h1 className="text-[45px] leading-none text-zinc-800 font-bold lg:text-6xl">
               {" "}
               An Industrial Take on Streetwear
             </h1>
