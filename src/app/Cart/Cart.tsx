@@ -52,6 +52,7 @@ const Cart = ({ userId }: CartProp) => {
           {CartItems.length ? (
             CartItems.map((item: any) => (
               <CartDisplay1
+                key={item.product_id}
                 productId={item.product_id}
                 productQuantity={item.quantity}
                 productName={item.product_name}

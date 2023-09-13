@@ -74,7 +74,9 @@ const page = async ({ params }: { params: { id: string } }) => {
         </div>
 
         {data.map((item) => (
-          <div className="w-[500px] h-[600px]   flex flex-col items-center gap-y-6 md:items-start md:space-y-12">
+          <div
+            key={item._id}
+            className="w-[500px] h-[600px]   flex flex-col items-center gap-y-6 md:items-start md:space-y-12">
             <div className="ml-10 p-2">
               <h1 className="text-2xl font-bold md:text-3xl text-zinc-900 md:font-semibold">
                 {item.title}

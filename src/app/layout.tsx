@@ -1,4 +1,4 @@
-"use client";
+//"use client";
 import "./globals.css";
 // import { Inter } from "next/font/google";
 import { Sora } from "next/font/google";
@@ -23,15 +23,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Provider store={store}>
-      <html lang="en">
+    <html lang="en">
+      <Provider store={store}>
         <body className={sora.className}>
           <Header />
           {children}
           <Toaster position="top-right" reverseOrder={false} />
           <Footer />
         </body>
-      </html>
-    </Provider>
+      </Provider>
+    </html>
   );
 }
