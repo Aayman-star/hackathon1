@@ -1,4 +1,4 @@
-"use client";
+//"use client";
 import "./globals.css";
 // import { Inter } from "next/font/google";
 import { Sora } from "next/font/google";
@@ -24,14 +24,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Provider store={store}>
-        <body className={sora.className}>
+      <body className={sora.className}>
+        <Provider store={store}>
           <Header />
           {children}
           <Toaster position="top-right" reverseOrder={false} />
           <Footer />
-        </body>
-      </Provider>
+        </Provider>
+      </body>
     </html>
   );
 }
