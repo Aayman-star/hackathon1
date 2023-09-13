@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 
-const page = () => {
+const Page = () => {
   const [testVar, setTestVar] = useState(1);
   console.log(`hello here I am : ${testVar}`);
   return (
