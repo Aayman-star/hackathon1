@@ -1,14 +1,9 @@
-//"use client";
 import "./globals.css";
 // import { Inter } from "next/font/google";
 import { Sora } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Providers from "./components/Provider";
-// import Providers from "./components/Provider";
-// import { store } from "@/app/store/store";
-// import { Provider } from "react-redux";
-// import { Toaster } from "react-hot-toast";
 
 // const inter = Inter({ subsets: ["latin"] });
 const sora = Sora({ subsets: ["latin"] });

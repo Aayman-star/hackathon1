@@ -12,8 +12,8 @@ const Providers = ({ children }: ProProps) => {
   return (
     <>
       <Provider store={store}>
-        {children}
         <Toaster position="top-right" reverseOrder={false} />
+        {children}
       </Provider>
     </>
   );
