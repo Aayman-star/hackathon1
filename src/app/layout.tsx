@@ -4,6 +4,7 @@ import { Sora } from "next/font/google";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Providers from "./components/Provider";
+import { Toaster } from "react-hot-toast";
 
 // const inter = Inter({ subsets: ["latin"] });
 const sora = Sora({ subsets: ["latin"] });
@@ -24,7 +25,7 @@ export default function RootLayout({
         <Providers>
           <Header />
           {children}
-
+          <Toaster position="top-right" reverseOrder={false} />
           <Footer />
         </Providers>
       </body>
