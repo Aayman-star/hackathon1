@@ -18,7 +18,7 @@ const CheckOutBtn = () => {
     console.log(`STRIPE:`, stripe);
     const res = await fetch(`/api/stripe-session/`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", Cookie: document.cookie },
       cache: "no-cache",
       body: JSON.stringify(cartItems),
     });
