@@ -19,10 +19,10 @@ const Page = () => {
   const dispatch = useDispatch<AppDispatch>();
   const userId = getCookie("user_id") as string;
   console.log("USER ID IN THE SUCCESS PAGE----", userId);
-  useEffect(() => {
-    clearCart(userId);
-    dispatch(fetchCartItems(userId));
-  }, []);
+  // useEffect(() => {
+  //   clearCart(userId);
+  //   // dispatch(fetchCartItems(userId));
+  // }, []);
 
   return (
     <>

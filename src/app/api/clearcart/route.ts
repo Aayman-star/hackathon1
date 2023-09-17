@@ -10,7 +10,7 @@ export const DELETE = async(request: NextRequest)=>
     
     try{
         if(userId){
-            console.log(`PUSER_ID : ${userId} from the clear cart api`)
+            console.log(`USER_ID : ${userId} from the clear cart api`)
             const res = await db.delete(cartTable).where(eq(cartTable.user_id,userId)).returning();
 
             return NextResponse.json({Message: `Data deleted successfully`},{status:200})

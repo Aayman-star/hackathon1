@@ -14,13 +14,12 @@ import { getCookie } from "cookies-next";
 import { P } from "drizzle-orm/db.d-cf0abe10";
 
 const Header = () => {
-  const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   const dispatch = useDispatch<AppDispatch>();
   const userId = getCookie("user_id") as string;
   useEffect(() => {
     dispatch(fetchCartItems(userId));
-  }, [totalItems]);
-
+  }, []);
+  const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   const [tItems, setTItems] = useState(totalItems);
   const [toggle, setToggle] = useState(false);
 
