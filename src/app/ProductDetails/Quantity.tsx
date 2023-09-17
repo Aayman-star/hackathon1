@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Image as IImage } from "sanity";
 import { urlForImage } from "../../../sanity/lib/image";
 import { toast, Toaster } from "react-hot-toast";
+import { fetchCartItems } from "../store/slice/cartSlice";
 
 interface QProps {
   pid: string;
@@ -47,6 +48,8 @@ const Quantity = ({ pid, iPrice, productName, image, userId }: QProps) => {
         total_price: newPrice,
       }),
     });
+    /**I am adding this line as a test */
+    //dispatch(fetchCartItems(userId));
   };
   const AddToCart = () => {
     const index = CartItems.findIndex((item) => item.product_id === pid);
