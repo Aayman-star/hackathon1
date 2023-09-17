@@ -19,7 +19,7 @@ const Header = () => {
   const userId = getCookie("user_id") as string;
   useEffect(() => {
     dispatch(fetchCartItems(userId));
-  }, []);
+  }, [totalItems]);
 
   const [tItems, setTItems] = useState(totalItems);
   const [toggle, setToggle] = useState(false);
