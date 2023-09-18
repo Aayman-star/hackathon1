@@ -1,7 +1,7 @@
 /**METHOD TO DELETE DATA FROM THE DATABASE */
 import { NextRequest,NextResponse } from "next/server";
 import { db,cartTable } from "@/lib1/drizzle";
-import { eq,and, asc } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 export const DELETE = async(request: NextRequest)=>
 {
   const req = request.nextUrl;

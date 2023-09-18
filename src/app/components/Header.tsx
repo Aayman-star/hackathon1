@@ -11,7 +11,6 @@ import { Input } from "../../../components/ui/input";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 import { getCookie } from "cookies-next";
-import { P } from "drizzle-orm/db.d-cf0abe10";
 
 const Header = () => {
   const dispatch = useDispatch<AppDispatch>();

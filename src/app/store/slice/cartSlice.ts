@@ -89,8 +89,8 @@ export const cartSlice = createSlice({
             
           }
         ]
-        console.log(`Here are the CART ITEMS`)
-        console.log(state.CartItems)
+        // console.log(`Here are the CART ITEMS`)
+        // console.log(state.CartItems)
       }
       
     },
@@ -121,6 +121,11 @@ export const cartSlice = createSlice({
        /**updating the total price/amount of items from the new CartItems array */
        state.totalPrice = state.CartItems.reduce((total,item) => total + item.totalItemPrice,0)
 
+    },
+    ClearCart:(state)=>{
+      state.CartItems = [];
+      state.totalItems = 0;
+      state.totalPrice=0;
     }
 
 },
@@ -133,8 +138,8 @@ extraReducers:(builder)=>{
     state.totalItems = action.payload.totalQuantity;
     state.totalPrice = action.payload.totalPrice;
     state.isLoading = false;
-    console.log(`From the async reducer :`,state.CartItems,state.totalItems,state.totalPrice)
-    console.log(`TRYING TO FIND THE DATATYPE OF IMAGES:`,state.CartItems.map((item)=> typeof item.pImage))
+    // console.log(`From the async reducer :`,state.CartItems,state.totalItems,state.totalPrice)
+    // console.log(`TRYING TO FIND THE DATATYPE OF IMAGES:`,state.CartItems.map((item)=> typeof item.pImage))
   });
   builder.addCase(fetchCartItems.rejected,(state,action)=>{
     state.isLoading = false;

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
@@ -49,13 +49,13 @@ const CartDisplay1 = ({
   const localQtyDown = () => {
     setQuantity(quantity - 1);
   };
-  console.log(`QUANTITY IN THE STATE VARIABLE:${quantity}`);
-  console.log(`DATA RECEIVED IN THIS CARTDISPLAY1`);
-  console.log(`PRODUCTID: ${productId}`);
-  console.log(`PRODUCT QUANTITY IN THE PROP:${productQuantity}`);
-  console.log(`PRODUCT NAME:${productName}`);
-  console.log(`PRODUCT IMAGE:${pImage}`);
-  console.log(`PRODUCT PRICE : ${iPrice}`);
+  // console.log(`QUANTITY IN THE STATE VARIABLE:${quantity}`);
+  // console.log(`DATA RECEIVED IN THIS CARTDISPLAY1`);
+  // console.log(`PRODUCTID: ${productId}`);
+  // console.log(`PRODUCT QUANTITY IN THE PROP:${productQuantity}`);
+  // console.log(`PRODUCT NAME:${productName}`);
+  // console.log(`PRODUCT IMAGE:${pImage}`);
+  // console.log(`PRODUCT PRICE : ${iPrice}`);
 
   const { totalItems, totalPrice } = useSelector(
     (state: RootState) => state.cartSlice

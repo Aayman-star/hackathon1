@@ -10,15 +10,15 @@ const CheckOutBtn = () => {
   const cartItems = useSelector(
     (state: RootState) => state.cartSlice.CartItems
   );
-  console.log(`DATA FROM THE STRIPE FOLDER:`, cartItems);
+  // console.log(`DATA FROM THE STRIPE FOLDER:`, cartItems);
   const handleCheckOut = async () => {
-    console.log(`HELLO FROM HANDLE CHECKOUT`);
+    // console.log(`HELLO FROM HANDLE CHECKOUT`);
     const stripe = await getStripePromise();
 
     console.log(`STRIPE:`, stripe);
     const res = await fetch(`/api/stripe-session/`, {
       method: "POST",
-      headers: { "Content-Type": "application/json", Cookie: document.cookie },
+      headers: { "Content-Type": "application/json" },
       cache: "no-cache",
       body: JSON.stringify(cartItems),
     });
@@ -26,7 +26,7 @@ const CheckOutBtn = () => {
       console.log(`Something wrong with the checkout...`);
     } else {
       const data = await res.json();
-      console.log(`Data in session:`, data.session);
+      // console.log(`Data in session:`, data.session);
 
       // console.log(`DATA IN CHECKOUT:`, data.session);
       if (data.session) {

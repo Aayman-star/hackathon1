@@ -9,11 +9,9 @@ import cartSlice from "../store/slice/cartSlice";
 import { fetchCartItems } from "../store/slice/cartSlice";
 import { Image as IImage } from "sanity";
 import { urlForImage } from "../../../sanity/lib/image";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import CartDisplay1 from "./CartDisplay1";
 import TotalPrice from "./TotalPrice";
-
-//import { P } from "drizzle-orm/db.d-cf0abe10";
 
 interface CartProp {
   userId: string;
@@ -37,10 +35,10 @@ const Cart = ({ userId }: CartProp) => {
     (state: RootState) => state.cartSlice
   );
 
-  console.log(`Here is the data from the CART ITEMS:`);
-  console.log(`FROM THE CART PAGE:`, CartItems);
-  console.log(`DETAILED INFO HERE :`);
-  console.log(CartItems.map((CartItem) => CartItem));
+  // console.log(`Here is the data from the CART ITEMS:`);
+  // console.log(`FROM THE CART PAGE:`, CartItems);
+  // console.log(`DETAILED INFO HERE :`);
+  // console.log(CartItems.map((CartItem) => CartItem));
 
   return (
     <>
