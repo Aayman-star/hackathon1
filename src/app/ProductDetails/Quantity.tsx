@@ -19,6 +19,12 @@ const Quantity = ({ pid, iPrice, productName, image, userId }: QProps) => {
   const dispatch = useDispatch<AppDispatch>();
   const { CartItems } = useSelector((state: RootState) => state.cartSlice);
   const [Q1, setQ1] = useState(1);
+  const increaseQ1 = () => {
+    setQ1(Q1 + 1);
+  };
+  const decreaseQ1 = () => {
+    setQ1(Q1 > 1 ? Q1 - 1 : 1);
+  };
 
   console.log(`Hello Girl here I am : ${Q1}`);
 
@@ -35,12 +41,24 @@ const Quantity = ({ pid, iPrice, productName, image, userId }: QProps) => {
         image: image,
       }),
     });
+    //dispatch(fetchCartItems(userId));
   };
-  /**UPDATING ITEMS IN THE DATABASE */
-  const updateInDb = async (i: number) => {
-    const qty = CartItems[i].item_quantity + Q1;
+  // const incrementInDB = async (i: number, tempQ: number) => {
+  //   const qty = Q1 + 1;
+  //   const newPrice = qty * iPrice;
+  //   const res = await fetch(`/api/cart?product_id=${pid}&user_id=${userId}`, {
+  //     method: "PUT",
+  //     body: JSON.stringify({
+  //       quantity: qty,
+  //       total_price: newPrice,
+  //     }),
+  //   });
+  //   dispatch(fetchCartItems(userId));
+  // };
+  // /**UPDATING ITEMS IN THE DATABASE */
+  const updateInDb = async (tempQuant: number) => {
+    const qty = Q1 + tempQuant; //tempQ
     const newPrice = qty * iPrice;
-
     const res = await fetch(`/api/cart?product_id=${pid}&user_id=${userId}`, {
       method: "PUT",
       body: JSON.stringify({
@@ -48,32 +66,93 @@ const Quantity = ({ pid, iPrice, productName, image, userId }: QProps) => {
         total_price: newPrice,
       }),
     });
+    //dispatch(fetchCartItems(userId));
   };
   const AddToCart = () => {
     const index = CartItems.findIndex((item) => item.product_id === pid);
+
+    //1.Item Exists in the Database
     if (index > -1) {
-      toast.promise(updateInDb(index), {
-        loading: `In progress`,
-        success: `Item updated successfully`,
-        error: `Could not add`,
+      //const tempQuant = CartItems[index];
+      const tempItem = CartItems[index];
+      //console.log("Value of quantity in the database", tempItem.item_quantity);
+      toast.promise(updateInDb(tempItem.item_quantity), {
+        loading: `Adding ${Q1} item(s) to the cart`,
+        success: `Item(s) added successfully`,
+        error: `Failed to add data`,
       });
+      dispatch(
+        cartActions.addToCart({
+          pid: pid,
+          itemQuantity: Q1,
+          iName: productName,
+          price: iPrice,
+          pImage: image,
+        })
+      );
     } else {
       toast.promise(addToDb(), {
         loading: `Adding ${Q1} item(s) to the cart`,
         success: `Item(s) added successfully`,
         error: `Failed to add data`,
       });
+      dispatch(
+        cartActions.addToCart({
+          pid: pid,
+          itemQuantity: Q1,
+          iName: productName,
+          price: iPrice,
+          pImage: image,
+        })
+      );
     }
-    dispatch(
-      cartActions.addToCart({
-        pid: pid,
-        itemQuantity: Q1,
-        iName: productName,
-        price: iPrice,
-        pImage: image,
-      })
-    );
   };
+
+  //const index = CartItems.findIndex((item) => item.product_id === pid);
+  // if (index > -1) {
+  //   //Item already exists in the CartItems array
+  //   // There are two possible scenarios : 1.Q1 === 1 2. Q1 > 1
+  //   //1. Q1 === 1
+  //   if (Q1 === 1) {
+  //     const tempQuantity = CartItems[index].item_quantity;
+  //     console.log(`TEMP QUANTITY---`, tempQuantity);
+  //     toast.promise(incrementInDB(index, tempQuantity), {
+  //       loading: `In progress`,
+  //       success: `Item updated successfully`,
+  //       error: `Could not add`,
+  //     });
+  //     // dispatch(cartActions.IncrementItem({ pid: pid, price: iPrice }));
+  //     dispatch(
+  //       cartActions.addToCart({
+  //         pid: pid,
+  //         itemQuantity: Q1,
+  //         iName: productName,
+  //         price: iPrice,
+  //         pImage: image,
+  //       })
+  //     );
+  //   }
+
+  //   if (Q1 > 1) {
+  //     const tempQuantity = CartItems[index].item_quantity;
+  //     toast.promise(updateInDb(index, tempQuantity), {
+  //       loading: `In progress`,
+  //       success: `Item updated successfully`,
+  //       error: `Could not add`,
+  //     });
+  //     dispatch(
+  //       cartActions.addToCart({
+  //         pid: pid,
+  //         itemQuantity: Q1,
+  //         iName: productName,
+  //         price: iPrice,
+  //         pImage: image,
+  //       })
+  //     );
+  //   }
+  //} //else {
+
+  // };
 
   return (
     <>
@@ -81,9 +160,7 @@ const Quantity = ({ pid, iPrice, productName, image, userId }: QProps) => {
         <p>Quantity : </p>
         <div className="flex items-center gap-x-4">
           <button
-            onClick={() => {
-              setQ1(Q1 > 1 ? (prev) => prev - 1 : 1);
-            }}
+            onClick={decreaseQ1}
             className="bg-zinc-800 text-zinc-50 px-2 py-1 rounded-md shadow-md">
             -
           </button>
@@ -91,9 +168,7 @@ const Quantity = ({ pid, iPrice, productName, image, userId }: QProps) => {
           <p>{Q1}</p>
 
           <button
-            onClick={() => {
-              setQ1((prev) => prev + 1);
-            }}
+            onClick={increaseQ1}
             className="bg-zinc-800 text-zinc-50 px-2 py-1 rounded-md shadow-md">
             +
           </button>
