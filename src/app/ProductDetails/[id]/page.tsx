@@ -28,10 +28,10 @@ const page = async ({ params }: { params: { id: string } }) => {
 
   /*THIS IS THE SECTION WHERE I AM FETCHING DATA FROM THE DATABASE*/
   const myCookie = cookies();
-  console.log("COOKIE");
+  // console.log("COOKIE");
   //This is where you fetch the user_id
   const myCookieOne = myCookie.get("user_id")?.value as string;
-  console.log(myCookieOne);
+  // console.log(myCookieOne);
 
   const query = `*[_type == 'product' && _id == $pid]{title,price,image,category->{name}, producttype ->{ name }}`;
   //This is where the data is being fetched from the api

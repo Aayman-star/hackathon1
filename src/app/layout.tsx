@@ -1,6 +1,7 @@
 import "./globals.css";
 
 import { Sora } from "next/font/google";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Providers from "./components/Provider";
@@ -21,7 +22,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={sora.className}>
         <Providers>
           <Header />
           {children}

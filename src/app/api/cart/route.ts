@@ -59,7 +59,7 @@ export const POST = async(request : NextRequest) =>{
        }
        
     
-    console.log(uid)
+    // console.log(uid)
     
     try{
         const res = await db.insert(cartTable).values({
@@ -120,7 +120,7 @@ export const DELETE = async(request: NextRequest)=>
     
     try{
         if(productId && userId){
-            console.log(`PRODUCT_ID: ${productId} & USER_ID : ${userId} from the api`)
+            // console.log(`PRODUCT_ID: ${productId} & USER_ID : ${userId} from the api`)
             const res = await db.delete(cartTable).where(eq(cartTable.product_id,productId)).returning();
 
             return NextResponse.json({Message: `Data deleted successfully`},{status:200})

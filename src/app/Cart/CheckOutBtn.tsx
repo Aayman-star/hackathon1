@@ -15,7 +15,7 @@ const CheckOutBtn = () => {
     // console.log(`HELLO FROM HANDLE CHECKOUT`);
     const stripe = await getStripePromise();
 
-    console.log(`STRIPE:`, stripe);
+    // console.log(`STRIPE:`, stripe);
     const res = await fetch(`/api/stripe-session/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

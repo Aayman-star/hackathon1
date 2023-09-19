@@ -69,7 +69,7 @@ export const cartSlice = createSlice({
       if(index > -1 ){
         /**THIS IS WHERE WE DEAL WITH THE EXISITNG ITEM */
        
-       console.log(`index : ${index}`)
+      //  console.log(`index : ${index}`)
        const tempQuantity = state.CartItems[index].item_quantity +action.payload.itemQuantity
        const tempTotalPrice = state.CartItems[index].totalItemPrice + action.payload.itemQuantity * action.payload.price
        state.CartItems[index].item_quantity = tempQuantity

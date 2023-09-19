@@ -26,7 +26,7 @@ const Quantity = ({ pid, iPrice, productName, image, userId }: QProps) => {
     setQ1(Q1 > 1 ? Q1 - 1 : 1);
   };
 
-  console.log(`Hello Girl here I am : ${Q1}`);
+  // console.log(`Hello Girl here I am : ${Q1}`);
 
   /**ADDING ITEMS TO THE CART */
   const addToDb = async () => {

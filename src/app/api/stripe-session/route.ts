@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-import { getCookie } from "cookies-next";
+// import { getCookie } from "cookies-next";
 
 
 const key = process.env.STRIPE_SECRET_KEY || '';
@@ -15,7 +15,7 @@ export const POST = async(request:NextRequest) =>{
     //const userId = getCookie('user_id',{req,res}) as string;
 
  //   console.log(`USER ID IN STRIPE API`,userId)
-    console.log(`Reeived Data in Stripe API:`,body)
+    // console.log(`Reeived Data in Stripe API:`,body)
 
     // const customer = await stripe.customers.create({
     //     metadata:{

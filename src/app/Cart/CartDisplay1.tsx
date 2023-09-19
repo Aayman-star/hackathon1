@@ -60,11 +60,11 @@ const CartDisplay1 = ({
   const { totalItems, totalPrice } = useSelector(
     (state: RootState) => state.cartSlice
   );
-  console.log(`RECEIVED DATA:`, totalItems, totalPrice);
+  // console.log(`RECEIVED DATA:`, totalItems, totalPrice);
 
   /**FETCH EXISTING DATA FROM THE DATABASE */
 
-  console.log(`RECEIVED USER ID IN THE CARTDISPLAY FILE :${userId}`);
+  // console.log(`RECEIVED USER ID IN THE CARTDISPLAY FILE :${userId}`);
   /**DELETING FROM DATABASE */
   const deleteFromDb = async () => {
     try {
