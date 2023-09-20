@@ -17,7 +17,7 @@ const Page = () => {
 
   useEffect(() => {
     clearCart(userId);
-  }, []);
+  }, [userId]);
 
   return (
     <>
