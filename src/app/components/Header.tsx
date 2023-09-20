@@ -17,7 +17,7 @@ const Header = () => {
   const userId = getCookie("user_id") as string;
   useEffect(() => {
     dispatch(fetchCartItems(userId));
-  }, [userId]);
+  }, [dispatch, userId]);
   const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   //const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   const [tItems, setTItems] = useState(totalItems);
