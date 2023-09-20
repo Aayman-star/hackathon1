@@ -34,6 +34,10 @@ const CheckOutBtn = () => {
       if (data.session) {
         dispatch(cartActions.ClearCart());
         stripe?.redirectToCheckout({ sessionId: data.session.id });
+        // stripe?.redirectToCheckout({
+        //   sessionId: data.session.id,
+        //   userId: userId,
+        // });
       }
     }
   };

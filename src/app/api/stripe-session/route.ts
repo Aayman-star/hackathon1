@@ -12,6 +12,7 @@ export const POST = async(request:NextRequest) =>{
 
 
     const body = await request.json();
+    
     //const userId = getCookie('user_id',{req,res}) as string;
 
  //   console.log(`USER ID IN STRIPE API`,userId)
@@ -58,6 +59,7 @@ export const POST = async(request:NextRequest) =>{
                 
                 //customer:customer.id,
                 success_url : `${request.headers.get('origin')}/success`,
+                //success_url : `${request.headers.get('origin')}/api/clearcart?user_id=${userId}`,
                 cancel_url : `${request.headers.get('origin')}/cart`
              
             });

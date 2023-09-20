@@ -1,6 +1,9 @@
 "use client";
 import React, { useEffect } from "react";
 import { getCookie } from "cookies-next";
+import { fetchCartItems } from "../store/slice/cartSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store/store";
 
 const clearCart = async (userId: string) => {
   try {
@@ -13,11 +16,13 @@ const clearCart = async (userId: string) => {
 };
 
 const Page = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const userId = getCookie("user_id") as string;
 
   useEffect(() => {
     clearCart(userId);
   }, [userId]);
+  dispatch(fetchCartItems(userId));
 
   return (
     <>
