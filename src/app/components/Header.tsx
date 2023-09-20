@@ -13,12 +13,12 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 import { getCookie } from "cookies-next";
 
 const Header = () => {
-  const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   const dispatch = useDispatch<AppDispatch>();
   const userId = getCookie("user_id") as string;
   useEffect(() => {
     dispatch(fetchCartItems(userId));
   }, []);
+  const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   //const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   const [tItems, setTItems] = useState(totalItems);
   const [toggle, setToggle] = useState(false);

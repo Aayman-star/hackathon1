@@ -1,15 +1,17 @@
 "use client";
 import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../store/store";
+import { useSelector, useDispatch } from "react-redux";
+import { AppDispatch, RootState } from "../store/store";
 import { ShoppingCartIcon } from "@heroicons/react/20/solid";
 import getStripePromise from "@/lib1/stripe";
 import { loadStripe } from "@stripe/stripe-js";
+import { cartActions } from "../store/slice/cartSlice";
 
 const CheckOutBtn = () => {
   const cartItems = useSelector(
     (state: RootState) => state.cartSlice.CartItems
   );
+  const dispatch = useDispatch<AppDispatch>();
   // console.log(`DATA FROM THE STRIPE FOLDER:`, cartItems);
   const handleCheckOut = async () => {
     // console.log(`HELLO FROM HANDLE CHECKOUT`);
@@ -31,6 +33,7 @@ const CheckOutBtn = () => {
       // console.log(`DATA IN CHECKOUT:`, data.session);
       if (data.session) {
         stripe?.redirectToCheckout({ sessionId: data.session.id });
+        dispatch(cartActions.ClearCart());
       }
     }
   };
