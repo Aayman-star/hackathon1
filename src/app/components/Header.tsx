@@ -25,6 +25,7 @@ const Header = () => {
 
   return (
     <>
+      {/* Mobile Nav Bar */}
       <header className="w-full py-8 lg:hidden">
         <nav className="w-full p-2 mx-auto flex flex-wrap items-center justify-between">
           <Link href={"/"}>
@@ -56,23 +57,23 @@ const Header = () => {
                   <Link
                     onClick={() => setToggle(!toggle)}
                     href={"/Products/Female"}>
-                    <li className="hover:scale-110">Female</li>
+                    <li className="">Female</li>
                   </Link>
                   <Link
                     onClick={() => setToggle(!toggle)}
                     href={"/Products/Male"}>
-                    <li className="hover:scale-110">Male</li>
+                    <li className="">Male</li>
                   </Link>
                   <Link
                     onClick={() => setToggle(!toggle)}
                     href={"/Products/Kids"}>
-                    <li className="hover:scale-110">Kids</li>
+                    <li className="">Kids</li>
                   </Link>
 
                   <Link
                     onClick={() => setToggle(!toggle)}
                     href={"/Products/All"}>
-                    <li className="hover:scale-110">All Products</li>
+                    <li className="">All Products</li>
                   </Link>
                 </ul>
               </div>
@@ -80,6 +81,7 @@ const Header = () => {
           )}
         </nav>
       </header>
+      {/* Desktop NavBar */}
       <header className="hidden lg:block w-full py-8 bg-white">
         <nav className="max-w-7xl p-2 mx-auto flex items-center space-x-20">
           {/* <h1 className="text-3xl font-bold text-purple-600">Dine Market</h1> */}
@@ -90,26 +92,36 @@ const Header = () => {
 
           <ul className="flex items-center space-x-10 text-md font-medium">
             <Link href={"/Products/Female"}>
-              <li className="hover:scale-110">Female</li>
+              <li className="transform transition-all hover:scale-110 duration-200">
+                Female
+              </li>
             </Link>
             <Link href={"/Products/Male"}>
-              <li className="hover:scale-110">Male</li>
+              <li className="transform transition-all hover:scale-110 duration-200">
+                Male
+              </li>
             </Link>
             <Link href={"/Products/Kids"}>
-              <li className="hover:scale-110">Kids</li>
+              <li className="transform transition-all hover:scale-110 duration-200">
+                Kids
+              </li>
             </Link>
 
             <Link href={"/Products/All"}>
-              <li className="hover:scale-110">All Products</li>
+              <li className="transform transition-all hover:scale-110 duration-200">
+                All Products
+              </li>
             </Link>
           </ul>
           <Input />
-          <div className="relative">
-            <span className="absolute right-1 top-0 rounded-full bg-zinc-800 w-5 h-5 text-white text-xs text-center">
-              {/* {!isNaN(tItems) && tItems} */}
-              {!isNaN(totalItems) && totalItems}
+          <div className="relative transform transition-all hover:scale-110 duration-200 ">
+            <span>
+              <span className="absolute right-1 top-0 rounded-full bg-zinc-800 w-5 h-5 text-white text-xs grid place-content-center">
+                {/* {!isNaN(tItems) && tItems} */}
+                {!isNaN(totalItems) && totalItems}
+              </span>
+              <CartButton />
             </span>
-            <CartButton />
           </div>
         </nav>
       </header>
