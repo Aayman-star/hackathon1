@@ -5,7 +5,7 @@ const CartButton = () => {
   return (
     <>
       <Link href={"/Cart"}>
-        <button className="bg-gray-200 grid place-content-center rounded-full w-12 h-12 hover:scale-125">
+        <button className="bg-gray-200 grid place-content-center rounded-full w-12 h-12">
           <svg
             className="w-5 h-5 font-bold"
             aria-hidden="true"
