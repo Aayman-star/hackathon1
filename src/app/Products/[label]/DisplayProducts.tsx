@@ -4,11 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Image as IImage } from "sanity";
 import { urlForImage } from "../../../../sanity/lib/image";
-import { FC } from "react";
-import { POST } from "@/app/api/cart/route";
-
-// import { useContext } from "react";
-// import CartContext from "@/app/cartContext/cartContext";
 
 interface DisplayData {
   _id: string;
@@ -19,26 +14,14 @@ interface DisplayData {
 }
 
 const DisplayProducts = ({ _id, title, image, index, price }: DisplayData) => {
-  const imgWidth = 350;
-  const imgHeight = 450;
-  // const handleAddtoCart = async () => {
-  //   const res = await fetch("/api/cart", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //       product_id: _id,
-  //       quantity: 1,
-  //     }),
-  //   });
-  //   const result = await res.json();
-  //   console.log(result);
-  // };
-  // const { addToCart } = useContext(CartContext);
+  const imgWidth = 300;
+  const imgHeight = 400;
 
   return (
-    <>
+    <div className="mx-4">
       <Link href={`/ProductDetails/${_id}`}>
         <Image
-          className="hover:scale-105 duration-300"
+          className="transform transition-all hover:scale-105 duration-300"
           src={urlForImage(image).url()}
           alt="product"
           width={imgWidth}
@@ -46,7 +29,7 @@ const DisplayProducts = ({ _id, title, image, index, price }: DisplayData) => {
         />
       </Link>
 
-      <div className="w-[300px] flex flex-col justify-center items-start">
+      <div className="w-[300px] flex flex-col justify-center items-start my-2">
         <Link href={`/ProductDetails/${_id}`}>
           <h3 className="font-regular text-md" key={index}>
             {title}
@@ -60,7 +43,7 @@ const DisplayProducts = ({ _id, title, image, index, price }: DisplayData) => {
         {" "}
         Add to Cart
       </button> */}
-    </>
+    </div>
   );
 };
 
