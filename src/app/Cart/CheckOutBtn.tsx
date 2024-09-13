@@ -33,6 +33,7 @@ const CheckOutBtn = () => {
       // console.log(`DATA IN CHECKOUT:`, data.session);
       if (data.session) {
         stripe?.redirectToCheckout({ sessionId: data.session.id });
+        dispatch(cartActions.ClearCart());
       }
     }
   };
