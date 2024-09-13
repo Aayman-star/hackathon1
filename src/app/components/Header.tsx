@@ -26,7 +26,7 @@ const Header = () => {
   return (
     <>
       {/* Mobile Nav Bar */}
-      <header className="w-full py-8 lg:hidden">
+      <header className="w-full py-8 px-4 lg:hidden">
         <nav className="w-full p-2 mx-auto flex flex-wrap items-center justify-between">
           <Link href={"/"}>
             {" "}
@@ -34,18 +34,18 @@ const Header = () => {
           </Link>
           {!toggle ? (
             <button onClick={() => setToggle(!toggle)}>
-              <Bars3Icon className="w-5 h-5 md:w-8 md:h-8" />
+              <Bars3Icon className="w-7 h-7 text-zinc-700" />
             </button>
           ) : (
             <div className="w-full h-screen -mt-10 bg-white relative">
               <button
                 className="absolute top-4 right-4"
                 onClick={() => setToggle(!toggle)}>
-                <XMarkIcon className="w-5 h-5 md:w-8 md:h-8" />
+                <XMarkIcon className="w-7 h-7 text-zinc-700" />
               </button>
               <div className="mt-10 p-4 mb-10 flex flex-col gap-y-9 items-center">
                 <div onClick={() => setToggle(!toggle)} className="relative">
-                  <span className="absolute right-1 top-0 rounded-full bg-zinc-800 w-5 h-5 text-white text-xs text-center">
+                  <span className="absolute right-1 top-0 rounded-full bg-zinc-800 w-5 h-5 text-white text-xs text-center grid place-content-center">
                     {!isNaN(totalItems) && totalItems}
                   </span>
                   <CartButton />
@@ -64,11 +64,11 @@ const Header = () => {
                     href={"/Products/Male"}>
                     <li className="">Male</li>
                   </Link>
-                  <Link
+                  {/* <Link
                     onClick={() => setToggle(!toggle)}
                     href={"/Products/Kids"}>
                     <li className="">Kids</li>
-                  </Link>
+                  </Link> */}
 
                   <Link
                     onClick={() => setToggle(!toggle)}
@@ -83,7 +83,7 @@ const Header = () => {
       </header>
       {/* Desktop NavBar */}
       <header className="hidden lg:block w-full py-8 bg-white">
-        <nav className="max-w-7xl p-2 mx-auto flex items-center space-x-20">
+        <nav className="max-w-6xl p-2 mx-auto flex items-center space-x-20">
           {/* <h1 className="text-3xl font-bold text-purple-600">Dine Market</h1> */}
           <Link href={"/"}>
             {" "}
@@ -101,11 +101,11 @@ const Header = () => {
                 Male
               </li>
             </Link>
-            <Link href={"/Products/Kids"}>
+            {/* <Link href={"/Products/Kids"}>
               <li className="transform transition-all hover:scale-110 duration-200">
                 Kids
               </li>
-            </Link>
+            </Link> */}
 
             <Link href={"/Products/All"}>
               <li className="transform transition-all hover:scale-110 duration-200">
