@@ -14,7 +14,7 @@ const TotalPrice = () => {
         {isNaN(localTotal) ? (
           <p className="font-bold text-zinc-700 text-xl lg:text-2xl"> ...</p>
         ) : (
-          <p className="font-medium text-zinc-700 text-lg lg:text-xl">
+          <p className="font-medium text-zinc-700  lg:text-lg">
             {" "}
             SUBTOTAL : ${localTotal.toFixed(2)}
           </p>
