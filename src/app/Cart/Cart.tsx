@@ -1,14 +1,9 @@
 "use client";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
-//import { cookies } from "next/headers";
-import CartDisplay from "./CartDisplay";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
-import cartSlice from "../store/slice/cartSlice";
 import { fetchCartItems } from "../store/slice/cartSlice";
-import { Image as IImage } from "sanity";
-import { urlForImage } from "../../../sanity/lib/image";
 
 import SingleCartItem from "./SingleCartItem";
 import TotalPrice from "./TotalPrice";
