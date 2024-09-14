@@ -1,12 +1,10 @@
 "use client";
-import React, { useState, useEffect } from "react";
-// import { useRouter } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "../store/store";
-import { cartActions } from "../store/slice/cartSlice";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../store/store";
 import { Toaster, toast } from "react-hot-toast";
+import { cartActions } from "../store/slice/cartSlice";
 import { fetchCartItems } from "../store/slice/cartSlice";
 
 import {
@@ -42,22 +40,7 @@ const SingleCartItem = ({
   const localQtyDown = () => {
     setLocalQuantity(localquantity - 1);
   };
-  // console.log(`QUANTITY IN THE STATE VARIABLE:${quantity}`);
-  // console.log(`DATA RECEIVED IN THIS CARTDISPLAY1`);
-  // console.log(`PRODUCTID: ${productId}`);
-  // console.log(`PRODUCT QUANTITY IN THE PROP:${productQuantity}`);
-  // console.log(`PRODUCT NAME:${productName}`);
-  // console.log(`PRODUCT IMAGE:${pImage}`);
-  // console.log(`PRODUCT PRICE : ${iPrice}`);
 
-  const { totalItems, totalPrice } = useSelector(
-    (state: RootState) => state.cartSlice
-  );
-  // console.log(`RECEIVED DATA:`, totalItems, totalPrice);
-
-  /**FETCH EXISTING DATA FROM THE DATABASE */
-
-  // console.log(`RECEIVED USER ID IN THE CARTDISPLAY FILE :${userId}`);
   /**DELETING FROM DATABASE */
   const deleteFromDb = async () => {
     try {
