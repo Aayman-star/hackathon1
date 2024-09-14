@@ -1,16 +1,16 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import Logo from "public/Logo.webp";
-import Link from "next/link";
 import CartButton from "./CartButton";
-import { RootState, AppDispatch } from "../store/store";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchCartItems } from "../store/slice/cartSlice";
+import { getCookie } from "cookies-next";
+import React, { useEffect, useState } from "react";
 import { Input } from "../../../components/ui/input";
 import { Bars3Icon } from "@heroicons/react/20/solid";
 import { XMarkIcon } from "@heroicons/react/20/solid";
-import { getCookie } from "cookies-next";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState, AppDispatch } from "../store/store";
+import { fetchCartItems } from "../store/slice/cartSlice";
 
 const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,7 +22,17 @@ const Header = () => {
   //const { totalItems } = useSelector((state: RootState) => state.cartSlice);
   const [tItems, setTItems] = useState(totalItems);
   const [toggle, setToggle] = useState(false);
-
+  const navLinksLarge = [
+    { id: 1, title: "Female", link: "/Products/Female" },
+    { id: 2, title: "Male", link: "/Products/Male" },
+    { id: 3, title: "All Products", link: "/Products/All" },
+  ];
+  const navLinksMobile = [
+    { id: 1, title: "Home", link: "/" },
+    { id: 2, title: "Female", link: "/Products/Female" },
+    { id: 3, title: "Male", link: "/Products/Male" },
+    { id: 4, title: "All Products", link: "/Products/All" },
+  ];
   return (
     <>
       {/* Mobile Nav Bar */}
@@ -51,30 +61,15 @@ const Header = () => {
                   <CartButton />
                 </div>
                 <ul className="flex flex-col gap-y-4 text-md font-medium">
-                  <Link onClick={() => setToggle(!toggle)} href={"/"}>
-                    <li className="hover:scale-110">Home</li>
-                  </Link>
-                  <Link
-                    onClick={() => setToggle(!toggle)}
-                    href={"/Products/Female"}>
-                    <li className="">Female</li>
-                  </Link>
-                  <Link
-                    onClick={() => setToggle(!toggle)}
-                    href={"/Products/Male"}>
-                    <li className="">Male</li>
-                  </Link>
-                  {/* <Link
-                    onClick={() => setToggle(!toggle)}
-                    href={"/Products/Kids"}>
-                    <li className="">Kids</li>
-                  </Link> */}
-
-                  <Link
-                    onClick={() => setToggle(!toggle)}
-                    href={"/Products/All"}>
-                    <li className="">All Products</li>
-                  </Link>
+                  {navLinksMobile.map((link, i) => (
+                    <Link
+                      key={link.id}
+                      href={link.link}
+                      onClick={() => setToggle(!toggle)}
+                      className="text-zinc-800">
+                      {link.title}
+                    </Link>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -91,27 +86,14 @@ const Header = () => {
           </Link>
 
           <ul className="flex items-center space-x-10 text-md font-medium">
-            <Link href={"/Products/Female"}>
-              <li className="transform transition-all hover:scale-110 duration-200">
-                Female
-              </li>
-            </Link>
-            <Link href={"/Products/Male"}>
-              <li className="transform transition-all hover:scale-110 duration-200">
-                Male
-              </li>
-            </Link>
-            {/* <Link href={"/Products/Kids"}>
-              <li className="transform transition-all hover:scale-110 duration-200">
-                Kids
-              </li>
-            </Link> */}
-
-            <Link href={"/Products/All"}>
-              <li className="transform transition-all hover:scale-110 duration-200">
-                All Products
-              </li>
-            </Link>
+            {navLinksLarge.map((link, i) => (
+              <Link
+                className="transform transition-all hover:scale-105 duration-300 text-zinc-800"
+                key={link.id}
+                href={link.link}>
+                {link.title}
+              </Link>
+            ))}
           </ul>
           <Input />
           <div className="relative transform transition-all hover:scale-110 duration-200 ">
@@ -130,15 +112,3 @@ const Header = () => {
 };
 
 export default Header;
-
-/**Code which I used to trouble shoot this component */
-//console.log(`COOKIE RECEIVED IN THE HEADER FILE:${userId}`);
-//const oldValue = totalItems;
-// useEffect(() => {
-//   dispatch(fetchCartItems(userId));
-// }, [dispatch, userId]);
-// const [tQty, setTQty] = useState(0);
-// useEffect(() => {
-//   useSelector((state: RootState) => state.cartSlice.totalItems);
-//   setTQty(totalItems);
-// }, []);
