@@ -11,8 +11,11 @@ import { XMarkIcon } from "@heroicons/react/20/solid";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState, AppDispatch } from "../store/store";
 import { fetchCartItems } from "../store/slice/cartSlice";
+import { usePathname } from "next/navigation";
 
 const Header = () => {
+  const pathname = usePathname();
+
   const dispatch = useDispatch<AppDispatch>();
   const userId = getCookie("user_id") as string;
   useEffect(() => {
@@ -33,6 +36,8 @@ const Header = () => {
     { id: 3, title: "Male", link: "/Products/Male" },
     { id: 4, title: "All Products", link: "/Products/All" },
   ];
+  const inActiveLink = ``;
+  const activeLink = `bg-zinc-800 text-zinc-100 px-2 py-1 rounded-md`;
   return (
     <>
       {/* Mobile Nav Bar */}
@@ -88,7 +93,11 @@ const Header = () => {
           <ul className="flex items-center space-x-10 text-md font-medium">
             {navLinksLarge.map((link, i) => (
               <Link
-                className="transform transition-all hover:scale-105 duration-300 text-zinc-800"
+                className={`transform transition-all hover:scale-105 duration-300  ${
+                  pathname === link.link
+                    ? "bg-zinc-800 text-zinc-100 px-2 py-1 rounded-md font-light"
+                    : "text-zinc-800"
+                }`}
                 key={link.id}
                 href={link.link}>
                 {link.title}
