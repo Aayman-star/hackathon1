@@ -36,8 +36,7 @@ const Header = () => {
     { id: 3, title: "Male", link: "/Products/Male" },
     { id: 4, title: "All Products", link: "/Products/All" },
   ];
-  const inActiveLink = ``;
-  const activeLink = `bg-zinc-800 text-zinc-100 px-2 py-1 rounded-md`;
+
   return (
     <>
       {/* Mobile Nav Bar */}
@@ -52,9 +51,9 @@ const Header = () => {
               <Bars3Icon className="w-7 h-7 text-zinc-700" />
             </button>
           ) : (
-            <div className="w-full h-screen -mt-10 bg-white relative">
+            <div className="fixed left-0 top-0 z-10  w-[100%]  h-[80%] bg-white">
               <button
-                className="absolute top-4 right-4"
+                className="absolute top-7 right-12"
                 onClick={() => setToggle(!toggle)}>
                 <XMarkIcon className="w-7 h-7 text-zinc-700" />
               </button>
@@ -65,13 +64,17 @@ const Header = () => {
                   </span>
                   <CartButton />
                 </div>
-                <ul className="flex flex-col gap-y-4 text-md font-medium">
+                <ul className="w-[80%] mx-auto h-full  overflow-x-hidden flex flex-col items-center gap-y-4 mt-4">
                   {navLinksMobile.map((link, i) => (
                     <Link
                       key={link.id}
                       href={link.link}
                       onClick={() => setToggle(!toggle)}
-                      className="text-zinc-800">
+                      className={` ${
+                        pathname === link.link
+                          ? "text-green-700 "
+                          : "text-zinc -800"
+                      }`}>
                       {link.title}
                     </Link>
                   ))}
