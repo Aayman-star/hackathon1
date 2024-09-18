@@ -1,10 +1,10 @@
 "use client";
 import React, { useEffect } from "react";
 import { getCookie } from "cookies-next";
-import { cartActions, fetchCartItems } from "../store/slice/cartSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
 import { BadgeCheck } from "lucide-react";
+import { cartActions } from "../store/slice/cartSlice";
 
 const clearCart = async (userId: string) => {
   try {

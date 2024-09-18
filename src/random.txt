@@ -296,3 +296,17 @@ const page = async ({ params }: { params: { id: string } }) => {
 };
 
 export default page;
+
+
+?? From the stripe route.ts file:
+
+ const userId = getCookie('user_id',{req,res}) as string;
+
+     console.log(`USER ID IN STRIPE API`,userId)
+   console.log(`Reeived Data in Stripe API:`,body)
+
+   const customer = await stripe.customers.create({
+       metadata:{
+           userId:userId
+       },
+   })

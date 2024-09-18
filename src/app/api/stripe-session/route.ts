@@ -10,16 +10,6 @@ const stripe = new Stripe(key, {
 export const POST = async (request: NextRequest) => {
   const body = await request.json();
 
-  //const userId = getCookie('user_id',{req,res}) as string;
-
-  //   console.log(`USER ID IN STRIPE API`,userId)
-  // console.log(`Reeived Data in Stripe API:`,body)
-
-  // const customer = await stripe.customers.create({
-  //     metadata:{
-  //         userId:userId
-  //     },
-  // })
   try {
     if (body.length > 0) {
       const session = await stripe.checkout.sessions.create({
