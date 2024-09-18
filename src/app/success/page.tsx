@@ -4,6 +4,7 @@ import { getCookie } from "cookies-next";
 import { cartActions, fetchCartItems } from "../store/slice/cartSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store/store";
+import { BadgeCheck } from "lucide-react";
 
 const clearCart = async (userId: string) => {
   try {
@@ -20,16 +21,31 @@ const Page = () => {
   const userId = getCookie("user_id") as string;
 
   useEffect(() => {
-    dispatch(cartActions.ClearCart());
-    clearCart(userId);
-  }, [userId]);
+    // dispatch(cartActions.ClearCart());
+    // clearCart(userId);
+    /**The following function is being created and called if userId exists */
+    if (userId) {
+      const clearcart = async () => {
+        await clearCart(userId);
+        dispatch(cartActions.ClearCart());
+      };
+      clearcart();
+    }
+  }, [dispatch, userId]);
 
   return (
     <>
-      <div className="w-full h-screen p-4 mt-2 lg:max-w-7xl lg:mx-auto lg:grid lg:place-content-center lg:mt-0 lg:p-0">
-        <p className="bg-white text-gray-900 text-5xl font-semibold">
-          Order Placed Successfully...
-        </p>
+      <div className="w-full h-[80vh] md:h-[75vh] grid place-content-center">
+        <div className="w-full  md:max-w-6xl md:mx-auto flex flex-col items-center gap-y-2">
+          <BadgeCheck className="mx-auto text-zinc-100 fill-[#22c55e]  w-12 h-12 md:w-20 md:h-20" />
+          <p className="text-zinc-800 text-2xl font-medium md:text-4xl md:font-semibold text-center">
+            Order Placed Successfully...
+          </p>
+          <p className="text-center">
+            Thank you for shopping with us,
+            <span className="block">We look forward to your next order😊</span>
+          </p>
+        </div>
       </div>
     </>
   );
